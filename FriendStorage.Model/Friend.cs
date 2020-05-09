@@ -7,6 +7,9 @@ namespace FriendStorage.Model
   {
     public int Id { get; set; }
 
+    public string UnitName { get; set; }
+
+    // @@ PWB: Obslete fields
     public int FriendGroupId { get; set; }
 
     public string FirstName { get; set; }

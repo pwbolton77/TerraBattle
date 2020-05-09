@@ -40,16 +40,6 @@ namespace FriendStorage.UI.Wrapper
 
     public bool FirstNameIsChanged => GetIsChanged(nameof(FirstName));
 
-    public System.String MiddleName
-    {
-      get { return GetValue<System.String>(); }
-      set { SetValue(value); }
-    }
-
-    public System.String MiddleNameOriginalValue => GetOriginalValue<System.String>(nameof(MiddleName));
-
-    public bool MiddleNameIsChanged => GetIsChanged(nameof(MiddleName));
-
     public System.String LastName
     {
       get { return GetValue<System.String>(); }
@@ -79,6 +69,16 @@ namespace FriendStorage.UI.Wrapper
     public System.Boolean IsDeveloperOriginalValue => GetOriginalValue<System.Boolean>(nameof(IsDeveloper));
 
     public bool IsDeveloperIsChanged => GetIsChanged(nameof(IsDeveloper));
+
+    public System.String UnitName
+    {
+      get { return GetValue<System.String>(); }
+      set { SetValue(value); }
+    }
+
+    public System.String UnitNameOriginalValue => GetOriginalValue<System.String>(nameof(UnitName));
+
+    public bool UnitNameIsChanged => GetIsChanged(nameof(UnitName));
  
     public AddressWrapper Address { get; private set; }
  

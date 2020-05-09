@@ -6,19 +6,20 @@
              xmlns:behaviors="clr-namespace:FriendStorage.UI.Behaviors"
              xmlns:controls="clr-namespace:FriendStorage.UI.View.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="350" d:DesignWidth="700"
+             d:DesignHeight="550" d:DesignWidth="700"
              Background="#333333">
   <Grid>
     <Grid.RowDefinitions>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="*"/>
-      <RowDefinition Height="Auto"/>
-      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="Auto"/>    <!--Row 0-->
+      <RowDefinition Height="Auto"/>    <!--Row 1-->
+      <RowDefinition Height="Auto"/>    <!--Row 2-->
+      <RowDefinition Height="Auto"/>    <!--Row 3-->
+      <RowDefinition Height="Auto"/>    <!--Row 4-->
+      <RowDefinition Height="Auto"/>    <!--Row 5-->
+      <RowDefinition Height="Auto"/>       <!--Row 6-->
+      <RowDefinition Height="*"/>    <!--Row 7-->
+      <RowDefinition Height="Auto"/>    <!--Row 8-->
+      <RowDefinition Height="Auto"/>    <!--Row 9-->
     </Grid.RowDefinitions>
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="Auto"/>
@@ -29,42 +30,48 @@
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
-    <Label Content="Firstname" Margin="5"/>
-    <TextBox Text="{Binding Friend.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="1"/>
+      
+     <!--@@ PWB-->
+    <Label Content="Unit Name" Grid.Row="0" Margin="5"/>
+    <TextBox Text="{Binding Friend.UnitName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
+     <!--@@ PWB-->
 
-    <Label Content="Lastname" Grid.Row="2" Margin="5"/>
-    <TextBox Text="{Binding Friend.LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1"/>
+    <Label Content="Firstname" Grid.Row="1" Margin="5"/>
+    <TextBox Text="{Binding Friend.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"/>
 
-    <Label Content="Birthday" Grid.Row="3" Margin="5"/>
-    <DatePicker SelectedDate="{Binding Friend.Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1"/>
+    <Label Content="Lastname" Grid.Row="3" Margin="5"/>
+    <TextBox Text="{Binding Friend.LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1"/>
 
-    <Label Content="Is Developer" Grid.Row="4" Margin="5 0"/>
+    <Label Content="Birthday" Grid.Row="4" Margin="5"/>
+    <DatePicker SelectedDate="{Binding Friend.Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"/>
+
+    <Label Content="Is Developer" Grid.Row="5" Margin="5 0"/>
     <CheckBox IsChecked="{Binding Friend.IsDeveloper,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Left"  Grid.Column="1"/>
+                     Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"  Grid.Column="1"/>
 
-    <Label Content="Friendgroup" Grid.Row="5" Margin="5"/>
+    <Label Content="Friendgroup" Grid.Row="6" Margin="5"/>
     <ComboBox ItemsSource="{Binding FriendGroupLookup}"
                       DisplayMemberPath="DisplayValue"
                       SelectedValuePath="Id"
                       SelectedValue="{Binding Friend.FriendGroupId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                     Grid.Row="5" Grid.Column="1" VerticalAlignment="Center"/>
+                     Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
 
-    <Label Content="City" Grid.Column="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.Address.City,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="4"/>
+    <Label Content="City" Grid.Row="1" Grid.Column="3" Margin="5"/>
+    <TextBox Text="{Binding Friend.Address.City,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="4"/>
 
-    <Label Content="Street" Grid.Row="2" Grid.Column="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.Address.Street,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="4"/>
+    <Label Content="Street" Grid.Row="3" Grid.Column="3" Margin="5"/>
+    <TextBox Text="{Binding Friend.Address.Street,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="4"/>
 
-    <Label Content="Streetnumber" Grid.Row="3" Grid.Column="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.Address.StreetNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="4"/>
+    <Label Content="Streetnumber" Grid.Row="4" Grid.Column="3" Margin="5"/>
+    <TextBox Text="{Binding Friend.Address.StreetNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="4"/>
 
-    <StackPanel Grid.Row="6">
+    <StackPanel Grid.Row="7">
       <Label Content="Emails" Margin="5" VerticalAlignment="Top"/>
       <Button Command="{Binding AddEmailCommand}" Style="{StaticResource AddButtonStyle}" HorizontalAlignment="Right"/>
       <Button Command="{Binding RemoveEmailCommand}" Style="{StaticResource RemoveButtonStyle}" HorizontalAlignment="Right"/>
     </StackPanel>
 
-    <DataGrid ItemsSource="{Binding Friend.Emails}" SelectedItem="{Binding SelectedEmail,Mode=TwoWay}" Grid.Row="6" 
+    <DataGrid ItemsSource="{Binding Friend.Emails}" SelectedItem="{Binding SelectedEmail,Mode=TwoWay}" Grid.Row="7" 
             behaviors:DataGridChangeBehavior.IsActive="True"  Grid.Column="1" Grid.ColumnSpan="4" Margin="0 5 0 0" Width="538">
       <DataGrid.Columns>
         <DataGridTextColumn Header="Email" Binding="{Binding Email,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="300"/>
@@ -73,9 +80,9 @@
     </DataGrid>
 
     <controls:ChangeTrackingCollectionInfo DataContext="{Binding Friend.Emails, ValidatesOnNotifyDataErrors=False}"
-       Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="4"/>
+       Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"/>
 
-    <StackPanel Grid.Row="8" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+    <StackPanel Grid.Row="9" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
       <Button Content="Save" Command="{Binding SaveCommand}" Margin="5"/>
       <Button Content="Reset" Command="{Binding ResetCommand}" Margin="5"/>
       <Button Content="Delete" Command="{Binding DeleteCommand}" Margin="5"/>

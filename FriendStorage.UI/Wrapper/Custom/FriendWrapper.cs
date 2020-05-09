@@ -11,6 +11,12 @@ namespace FriendStorage.UI.Wrapper
   {
     public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
+      if (string.IsNullOrWhiteSpace(UnitName))
+      {
+        yield return new ValidationResult("Unit Name is required",
+          new[] { nameof(UnitName) });
+      }
+
       if (string.IsNullOrWhiteSpace(FirstName))
       {
         yield return new ValidationResult("Firstname is required",
