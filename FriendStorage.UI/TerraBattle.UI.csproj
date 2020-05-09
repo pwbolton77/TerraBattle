@@ -233,13 +233,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FriendStorage.DataAccess\FriendStorage.DataAccess.csproj">
+    <ProjectReference Include="..\FriendStorage.DataAccess\TerraBattle.DataAccess.csproj">
       <Project>{68AA3DAF-5E4B-4338-ABE8-78B7F74BAC4F}</Project>
-      <Name>FriendStorage.DataAccess</Name>
+      <Name>TerraBattle.DataAccess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FriendStorage.Model\FriendStorage.Model.csproj">
+    <ProjectReference Include="..\FriendStorage.Model\TerraBattle.Model.csproj">
       <Project>{75f90568-758d-4779-bdab-ed1c3e3e9161}</Project>
-      <Name>FriendStorage.Model</Name>
+      <Name>TerraBattle.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23103.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.UI", "FriendStorage.UI\FriendStorage.UI.csproj", "{26DA8118-E070-4CC2-BA7E-FD96F8BF08B7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerraBattle.UI", "FriendStorage.UI\TerraBattle.UI.csproj", "{26DA8118-E070-4CC2-BA7E-FD96F8BF08B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.Model", "FriendStorage.Model\FriendStorage.Model.csproj", "{75F90568-758D-4779-BDAB-ED1C3E3E9161}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerraBattle.Model", "FriendStorage.Model\TerraBattle.Model.csproj", "{75F90568-758D-4779-BDAB-ED1C3E3E9161}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.DataAccess", "FriendStorage.DataAccess\FriendStorage.DataAccess.csproj", "{68AA3DAF-5E4B-4338-ABE8-78B7F74BAC4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerraBattle.DataAccess", "FriendStorage.DataAccess\TerraBattle.DataAccess.csproj", "{68AA3DAF-5E4B-4338-ABE8-78B7F74BAC4F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendStorage.UITests", "FriendStorage.UITests\FriendStorage.UITests.csproj", "{873D62BF-35EC-4873-9B63-04D12A4C48FC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerraBattle.UITests", "FriendStorage.UITests\TerraBattle.UITests.csproj", "{873D62BF-35EC-4873-9B63-04D12A4C48FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7ED2B5FF-2C6A-4034-99C9-724420CF09BB}
 	EndGlobalSection
 EndGlobal

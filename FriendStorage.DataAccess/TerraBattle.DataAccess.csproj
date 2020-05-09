@@ -48,9 +48,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FriendStorage.Model\FriendStorage.Model.csproj">
+    <ProjectReference Include="..\FriendStorage.Model\TerraBattle.Model.csproj">
       <Project>{75F90568-758D-4779-BDAB-ED1C3E3E9161}</Project>
-      <Name>FriendStorage.Model</Name>
+      <Name>TerraBattle.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

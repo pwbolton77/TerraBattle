@@ -66,13 +66,13 @@
     <Compile Include="Wrapper\ValidationSimpleProperty.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FriendStorage.Model\FriendStorage.Model.csproj">
+    <ProjectReference Include="..\FriendStorage.Model\TerraBattle.Model.csproj">
       <Project>{75f90568-758d-4779-bdab-ed1c3e3e9161}</Project>
-      <Name>FriendStorage.Model</Name>
+      <Name>TerraBattle.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FriendStorage.UI\FriendStorage.UI.csproj">
+    <ProjectReference Include="..\FriendStorage.UI\TerraBattle.UI.csproj">
       <Project>{26DA8118-E070-4CC2-BA7E-FD96F8BF08B7}</Project>
-      <Name>FriendStorage.UI</Name>
+      <Name>TerraBattle.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
