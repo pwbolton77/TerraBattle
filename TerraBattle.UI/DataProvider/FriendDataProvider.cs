@@ -21,11 +21,11 @@ namespace TerraBattle.UI.DataProvider
       }
     }
 
-    public void SaveFriend(UnitConfig friend)
+    public void SaveFriend(UnitConfig unit_config)
     {
       using (var dataService = _dataServiceCreator())
       {
-        dataService.SaveFriend(friend);
+        dataService.SaveFriend(unit_config);
       }
     }
 

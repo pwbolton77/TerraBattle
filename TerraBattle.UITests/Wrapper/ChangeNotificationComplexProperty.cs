@@ -12,12 +12,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ChangeNotificationComplexProperty
   {
-    private UnitConfig _friend;
+    private UnitConfig _unitConfigs;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new UnitConfig
+      _unitConfigs = new UnitConfig
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -28,9 +28,9 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldInitializeAddressProperty()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsNotNull(wrapper.Address);
-      Assert.AreEqual(_friend.Address, wrapper.Address.Model);
+      Assert.AreEqual(_unitConfigs.Address, wrapper.Address.Model);
     }
   }
 }

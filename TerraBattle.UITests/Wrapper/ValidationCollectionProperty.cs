@@ -9,12 +9,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ValidationCollectionProperty
   {
-    private UnitConfig _friend;
+    private UnitConfig _unitConfigs;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new UnitConfig
+      _unitConfigs = new UnitConfig
       {
         FirstName = "Thomas",
         Address = new Address { City = "Müllheim" },
@@ -29,7 +29,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsValidOfRoot()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsTrue(wrapper.IsValid);
 
       wrapper.Emails.First().Email = "";
@@ -42,8 +42,8 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsValidOfRootWhenInitializing()
     {
-      _friend.Emails.First().Email = "";
-      var wrapper = new UnitConfigWrapper(_friend);
+      _unitConfigs.Emails.First().Email = "";
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsFalse(wrapper.IsValid);
       Assert.IsFalse(wrapper.HasErrors);
       Assert.IsTrue(wrapper.Emails.First().HasErrors);
@@ -52,7 +52,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsValidOfRootWhenRemovingInvalidItem()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsTrue(wrapper.IsValid);
 
       wrapper.Emails.First().Email = "";
@@ -66,7 +66,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldSetIsValidOfRootWhenAddingInvalidItem()
     {
       var emailToAdd = new FriendEmailWrapper(new FriendEmail());
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsTrue(wrapper.IsValid); ;
       wrapper.Emails.Add(emailToAdd);
       Assert.IsFalse(wrapper.IsValid);
@@ -78,7 +78,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsValidOfRoot()
     {
       var fired = false;
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == "IsValid")
@@ -98,7 +98,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsValidOfRootWhenRemovingInvalidItem()
     {
       var fired = false;
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == "IsValid")
@@ -118,7 +118,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsValidOfRootWhenAddingInvalidItem()
     {
       var fired = false;
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == "IsValid")

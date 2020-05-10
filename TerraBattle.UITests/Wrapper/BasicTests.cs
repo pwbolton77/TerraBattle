@@ -12,12 +12,12 @@ namespace TerraBattle.UI.Wrapper.Tests
   [TestClass()]
   public class BasicTests
   {
-    private UnitConfig _friend;
+    private UnitConfig _unitConfigs;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new UnitConfig
+      _unitConfigs = new UnitConfig
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -28,8 +28,8 @@ namespace TerraBattle.UI.Wrapper.Tests
     [TestMethod()]
     public void ShouldContainModelInModelProperty()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
-      Assert.AreEqual(_friend, wrapper.Model);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
+      Assert.AreEqual(_unitConfigs, wrapper.Model);
     }
 
     [TestMethod]
@@ -53,8 +53,8 @@ namespace TerraBattle.UI.Wrapper.Tests
     {
       try
       {
-        _friend.Address = null;
-        var wrapper = new UnitConfigWrapper(_friend);
+        _unitConfigs.Address = null;
+        var wrapper = new UnitConfigWrapper(_unitConfigs);
       }
       catch (ArgumentException ex)
       {
@@ -69,8 +69,8 @@ namespace TerraBattle.UI.Wrapper.Tests
     {
       try
       {
-        _friend.Emails = null;
-        var wrapper = new UnitConfigWrapper(_friend);
+        _unitConfigs.Emails = null;
+        var wrapper = new UnitConfigWrapper(_unitConfigs);
       }
       catch (ArgumentException ex)
       {
@@ -82,16 +82,16 @@ namespace TerraBattle.UI.Wrapper.Tests
     [TestMethod]
     public void ShouldGetValueOfUnderlyingModelProperty()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
-      Assert.AreEqual(_friend.FirstName, wrapper.FirstName);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
+      Assert.AreEqual(_unitConfigs.FirstName, wrapper.FirstName);
     }
 
     [TestMethod]
     public void ShouldSetValueOfUnderlyingModelProperty()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.FirstName = "Julia";
-      Assert.AreEqual("Julia", _friend.FirstName);
+      Assert.AreEqual("Julia", _unitConfigs.FirstName);
     }
   }
 }

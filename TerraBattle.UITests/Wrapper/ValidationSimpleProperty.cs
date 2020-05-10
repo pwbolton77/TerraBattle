@@ -9,12 +9,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ValidationSimpleProperty
   {
-    private UnitConfig _friend;
+    private UnitConfig _unitConfigs;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new UnitConfig
+      _unitConfigs = new UnitConfig
       {
         FirstName = "Thomas",
         Address = new Address { City = "Müllheim" },
@@ -25,7 +25,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldReturnValidationErrorIfFirstNameIsEmpty()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsFalse(wrapper.HasErrors);
 
       wrapper.FirstName = "";
@@ -43,7 +43,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaiseErrorsChangedEventWhenFirstNameIsSetToEmptyAndBack()
     {
       var fired = false;
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
 
       wrapper.ErrorsChanged += (s, e) =>
       {
@@ -64,7 +64,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsValid()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsTrue(wrapper.IsValid);
 
       wrapper.FirstName = "";
@@ -78,7 +78,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsValid()
     {
       var fired = false;
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
 
       wrapper.PropertyChanged += (s, e) =>
       {
@@ -99,8 +99,8 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetErrorsAndIsValidAfterInitialization()
     {
-      _friend.FirstName = "";
-      var wrapper = new UnitConfigWrapper(_friend);
+      _unitConfigs.FirstName = "";
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
 
       Assert.IsFalse(wrapper.IsValid);
       Assert.IsTrue(wrapper.HasErrors);
@@ -113,7 +113,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldRefreshErrorsAndIsValidWhenRejectingChanges()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsTrue(wrapper.IsValid);
       Assert.IsFalse(wrapper.HasErrors);
 

@@ -8,7 +8,7 @@ namespace TerraBattle.DataAccess
     {
         UnitConfig GetFriendById(int friendId);
 
-        void SaveFriend(UnitConfig friend);
+        void SaveFriend(UnitConfig unit_config);
 
         void DeleteFriend(int friendId);
 

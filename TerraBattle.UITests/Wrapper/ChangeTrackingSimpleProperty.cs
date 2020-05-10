@@ -8,12 +8,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ChangeTrackingSimpleProperty
   {
-    private UnitConfig _friend;
+    private UnitConfig _unitConfigs;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new UnitConfig
+      _unitConfigs = new UnitConfig
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -24,7 +24,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldStoreOriginalValue()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.AreEqual("Thomas", wrapper.FirstNameOriginalValue);
 
       wrapper.FirstName = "Julia";
@@ -34,7 +34,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsChanged()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       Assert.IsFalse(wrapper.FirstNameIsChanged);
       Assert.IsFalse(wrapper.IsChanged);
 
@@ -51,7 +51,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForFirstNameIsChanged()
     {
       var fired = false;
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == nameof(wrapper.FirstNameIsChanged))
@@ -67,7 +67,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsChanged()
     {
       var fired = false;
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == nameof(wrapper.IsChanged))
@@ -82,7 +82,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldAcceptChanges()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.FirstName = "Julia";
       Assert.AreEqual("Julia", wrapper.FirstName);
       Assert.AreEqual("Thomas", wrapper.FirstNameOriginalValue);
@@ -100,7 +100,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldRejectChanges()
     {
-      var wrapper = new UnitConfigWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.FirstName = "Julia";
       Assert.AreEqual("Julia", wrapper.FirstName);
       Assert.AreEqual("Thomas", wrapper.FirstNameOriginalValue);

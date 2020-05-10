@@ -16,7 +16,7 @@ namespace TerraBattle.UI.ViewModel
     private readonly IMessageDialogService _messageDialogService;
     private IFriendEditViewModel _selectedFriendEditViewModel;
 
-    private Func<IFriendEditViewModel> _friendEditViewModelCreator;
+    private Func<IFriendEditViewModel> _unitConfigEditViewModelCreator;
 
     public MainViewModel(IEventAggregator eventAggregator,
         IMessageDialogService messageDialogService,
@@ -29,7 +29,7 @@ namespace TerraBattle.UI.ViewModel
       _eventAggregator.GetEvent<FriendDeletedEvent>().Subscribe(OnFriendDeleted);
 
       NavigationViewModel = navigationViewModel;
-      _friendEditViewModelCreator = friendEditViewModelCreator;
+      _unitConfigEditViewModelCreator = friendEditViewModelCreator;
       FriendEditViewModels = new ObservableCollection<IFriendEditViewModel>();
       CloseFriendTabCommand = new DelegateCommand(OnCloseFriendTabExecute);
       AddFriendCommand = new DelegateCommand(OnAddFriendExecute);
@@ -74,7 +74,7 @@ namespace TerraBattle.UI.ViewModel
 
     private void OnAddFriendExecute(object obj)
     {
-      IFriendEditViewModel friendEditVm = _friendEditViewModelCreator();
+      IFriendEditViewModel friendEditVm = _unitConfigEditViewModelCreator();
       FriendEditViewModels.Add(friendEditVm);
       friendEditVm.Load();
       SelectedFriendEditViewModel = friendEditVm;
@@ -86,7 +86,7 @@ namespace TerraBattle.UI.ViewModel
         FriendEditViewModels.SingleOrDefault(vm => vm.Friend.Id == friendId);
       if (friendEditVm == null)
       {
-        friendEditVm = _friendEditViewModelCreator();
+        friendEditVm = _unitConfigEditViewModelCreator();
         FriendEditViewModels.Add(friendEditVm);
         friendEditVm.Load(friendId);
       }

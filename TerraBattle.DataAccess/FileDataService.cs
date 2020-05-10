@@ -13,47 +13,47 @@ namespace TerraBattle.DataAccess
 
     public UnitConfig GetFriendById(int friendId)
     {
-      var friends = ReadFromFile();
-      return friends.Single(f => f.Id == friendId);
+      var unitConfigs = ReadFromFile();
+      return unitConfigs.Single(f => f.Id == friendId);
     }
 
-    public void SaveFriend(UnitConfig friend)
+    public void SaveFriend(UnitConfig unit_config)
     {
-      if (friend.Id <= 0)
+      if (unit_config.Id <= 0)
       {
-        InsertFriend(friend);
+        InsertFriend(unit_config);
       }
       else
       {
-        UpdateFriend(friend);
+        UpdateFriend(unit_config);
       }
     }
 
     public void DeleteFriend(int friendId)
     {
-      var friends = ReadFromFile();
-      var existing = friends.Single(f => f.Id == friendId);
-      friends.Remove(existing);
-      SaveToFile(friends);
+      var unitConfigs = ReadFromFile();
+      var existing = unitConfigs.Single(u => u.Id == friendId);
+      unitConfigs.Remove(existing);
+      SaveToFile(unitConfigs);
     }
 
-    private void UpdateFriend(UnitConfig friend)
+    private void UpdateFriend(UnitConfig unit_config)
     {
-      var friends = ReadFromFile();
-      var existing = friends.Single(f => f.Id == friend.Id);
-      var indexOfExisting = friends.IndexOf(existing);
-      friends.Insert(indexOfExisting, friend);
-      friends.Remove(existing);
-      SaveToFile(friends);
+      var unitConfigs = ReadFromFile();
+      var existing = unitConfigs.Single(u => u.Id == unit_config.Id);
+      var indexOfExisting = unitConfigs.IndexOf(existing);
+      unitConfigs.Insert(indexOfExisting, unit_config);
+      unitConfigs.Remove(existing);
+      SaveToFile(unitConfigs);
     }
 
-    private void InsertFriend(UnitConfig friend)
+    private void InsertFriend(UnitConfig unit_config)
     {
-      var friends = ReadFromFile();
-      var maxFriendId = friends.Max(f => f.Id);
-      friend.Id = maxFriendId + 1;
-      friends.Add(friend);
-      SaveToFile(friends);
+      var unitConfigs = ReadFromFile();
+      var maxFriendId = unitConfigs.Max(f => f.Id);
+      unit_config.Id = maxFriendId + 1;
+      unitConfigs.Add(unit_config);
+      SaveToFile(unitConfigs);
     }
 
     public IEnumerable<FriendGroup> GetAllFriendGroups()

@@ -20,9 +20,9 @@ namespace TerraBattle.UI.ViewModel
   {
     private readonly IEventAggregator _eventAggregator;
     private readonly IMessageDialogService _messageDialogService;
-    private readonly IFriendDataProvider _friendDataProvider;
+    private readonly IFriendDataProvider _unitConfigDataProvider;
     private readonly ILookupProvider<FriendGroup> _friendGroupLookupProvider;
-    private UnitConfigWrapper _friend;
+    private UnitConfigWrapper _unitConfigs;
     private IEnumerable<LookupItem> _friendGroups;
     private FriendEmailWrapper _selectedEmail;
 
@@ -33,7 +33,7 @@ namespace TerraBattle.UI.ViewModel
     {
       _eventAggregator = eventAggregator;
       _messageDialogService = messageDialogService;
-      _friendDataProvider = friendDataProvider;
+      _unitConfigDataProvider = friendDataProvider;
       _friendGroupLookupProvider = friendGroupLookupProvider;
 
       SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
@@ -48,11 +48,11 @@ namespace TerraBattle.UI.ViewModel
     {
       FriendGroupLookup = _friendGroupLookupProvider.GetLookup();
 
-      var friend = friendId.HasValue
-          ? _friendDataProvider.GetFriendById(friendId.Value)
+      var unit_config = friendId.HasValue
+          ? _unitConfigDataProvider.GetFriendById(friendId.Value)
           : new UnitConfig { Address = new Address(), Emails = new List<FriendEmail>() };
 
-      Friend = new UnitConfigWrapper(friend);
+      Friend = new UnitConfigWrapper(unit_config);
       Friend.PropertyChanged += (s, e) =>
         {
           if (e.PropertyName == nameof(Friend.IsChanged)
@@ -67,10 +67,10 @@ namespace TerraBattle.UI.ViewModel
 
     public UnitConfigWrapper Friend
     {
-      get { return _friend; }
+      get { return _unitConfigs; }
       private set
       {
-        _friend = value;
+        _unitConfigs = value;
         OnPropertyChanged();
       }
     }
@@ -108,7 +108,7 @@ namespace TerraBattle.UI.ViewModel
 
     private void OnSaveExecute(object obj)
     {
-      _friendDataProvider.SaveFriend(Friend.Model);
+      _unitConfigDataProvider.SaveFriend(Friend.Model);
       Friend.AcceptChanges();
       _eventAggregator.GetEvent<FriendSavedEvent>().Publish(Friend.Model);
       InvalidateCommands();
@@ -138,12 +138,12 @@ namespace TerraBattle.UI.ViewModel
     {
       var result = _messageDialogService.ShowYesNoDialog(
           "Delete Friend",
-          string.Format("Do you really want to delete the friend '{0} {1}'", Friend.FirstName, Friend.LastName),
+          string.Format("Do you really want to delete the unit '{0} {1}'", Friend.FirstName, Friend.LastName),
           MessageDialogResult.No);
 
       if (result == MessageDialogResult.Yes)
       {
-        _friendDataProvider.DeleteFriend(Friend.Id);
+        _unitConfigDataProvider.DeleteFriend(Friend.Id);
         _eventAggregator.GetEvent<FriendDeletedEvent>().Publish(Friend.Id);
       }
     }

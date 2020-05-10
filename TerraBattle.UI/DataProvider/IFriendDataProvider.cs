@@ -6,7 +6,7 @@ namespace TerraBattle.UI.DataProvider
   {
     UnitConfig GetFriendById(int id);
 
-    void SaveFriend(UnitConfig friend);
+    void SaveFriend(UnitConfig unit_config);
 
     void DeleteFriend(int id);
   }
