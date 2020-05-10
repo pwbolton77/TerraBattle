@@ -6,11 +6,11 @@ using TerraBattle.Model;
 
 namespace TerraBattle.UI.DataProvider.Lookups
 {
-  public class FriendLookupProvider : ILookupProvider<UnitConfig>
+  public class UnitConfigLookupProvider : ILookupProvider<UnitConfig>
   {
     private readonly Func<IDataService> _dataServiceCreator;
 
-    public FriendLookupProvider(Func<IDataService> dataServiceCreator)
+    public UnitConfigLookupProvider(Func<IDataService> dataServiceCreator)
     {
       _dataServiceCreator = dataServiceCreator;
     }
@@ -19,7 +19,7 @@ namespace TerraBattle.UI.DataProvider.Lookups
     {
       using (var service = _dataServiceCreator())
       {
-        return service.GetAllFriends()
+        return service.GetAllUnitConfigs()
                 .Select(f => new LookupItem
                 {
                   Id = f.Id,

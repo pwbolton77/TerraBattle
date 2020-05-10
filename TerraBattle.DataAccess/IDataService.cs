@@ -6,13 +6,13 @@ namespace TerraBattle.DataAccess
 {
     public interface IDataService : IDisposable
     {
-        UnitConfig GetFriendById(int unitConfigId);
+        UnitConfig GetUnitConfigById(int unitConfigId);
 
-        void SaveFriend(UnitConfig unit_config);
+        void SaveUnitConfig(UnitConfig unitConfig);
 
-        void DeleteFriend(int unitConfigId);
+        void DeleteUnitConfig(int unitConfigId);
 
-        IEnumerable<UnitConfig> GetAllFriends();
+        IEnumerable<UnitConfig> GetAllUnitConfigs();
 
         IEnumerable<FriendGroup> GetAllFriendGroups();
     }

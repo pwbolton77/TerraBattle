@@ -26,7 +26,7 @@ namespace TerraBattle.UITests.Wrapper
     }
 
     [TestMethod]
-    public void ShouldSetIsChangedOfFriendWrapper()
+    public void ShouldSetIsChangedOfUnitConfigWrapper()
     {
       var wrapper = new UnitConfigWrapper(_unitConfigs);
       wrapper.Address.City = "Salt Lake City";
@@ -37,7 +37,7 @@ namespace TerraBattle.UITests.Wrapper
     }
 
     [TestMethod]
-    public void ShouldRaisePropertyChangedEventForIsChangedPropertyOfFriendWrapper()
+    public void ShouldRaisePropertyChangedEventForIsChangedPropertyOffUnitConfigWrapper()
     {
       var fired = false;
       var wrapper = new UnitConfigWrapper(_unitConfigs);

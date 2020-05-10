@@ -30,7 +30,7 @@ namespace TerraBattle.UITests.Wrapper
     }
 
     [TestMethod]
-    public void ShouldSetIsChangedOfFriendWrapper()
+    public void ShouldSetIsChangedOfUnitConfigWrapper()
     {
       var wrapper = new UnitConfigWrapper(_unitConfigs);
       var emailToModify = wrapper.Emails.First();
@@ -43,7 +43,7 @@ namespace TerraBattle.UITests.Wrapper
     }
 
     [TestMethod]
-    public void ShouldRaisePropertyChangedEventForIsChangedPropertyOfFriendWrapper()
+    public void ShouldRaisePropertyChangedEventForIsChangedPropertyOfUnitConfigWrapper()
     {
       var fired = false;
       var wrapper = new UnitConfigWrapper(_unitConfigs);

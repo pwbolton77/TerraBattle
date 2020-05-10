@@ -9,27 +9,27 @@ namespace TerraBattle.DataAccess
 {
   public class FileDataService : IDataService
   {
-    private const string StorageFile = "Friends.json";
+    private const string StorageFile = "UnitConfigs.json";
 
-    public UnitConfig GetFriendById(int unitConfigId)
+    public UnitConfig GetUnitConfigById(int unitConfigId)
     {
       var unitConfigs = ReadFromFile();
       return unitConfigs.Single(u => u.Id == unitConfigId);
     }
 
-    public void SaveFriend(UnitConfig unit_config)
+    public void SaveUnitConfig(UnitConfig unitConfig)
     {
-      if (unit_config.Id <= 0)
+      if (unitConfig.Id <= 0)
       {
-        InsertFriend(unit_config);
+        InsertUnitConfig(unitConfig);
       }
       else
       {
-        UpdateFriend(unit_config);
+        UpdateUnitConfig(unitConfig);
       }
     }
 
-    public void DeleteFriend(int unitConfigId)
+    public void DeleteUnitConfig(int unitConfigId)
     {
       var unitConfigs = ReadFromFile();
       var existing = unitConfigs.Single(u => u.Id == unitConfigId);
@@ -37,22 +37,22 @@ namespace TerraBattle.DataAccess
       SaveToFile(unitConfigs);
     }
 
-    private void UpdateFriend(UnitConfig unit_config)
+    private void UpdateUnitConfig(UnitConfig unitConfig)
     {
       var unitConfigs = ReadFromFile();
-      var existing = unitConfigs.Single(u => u.Id == unit_config.Id);
+      var existing = unitConfigs.Single(u => u.Id == unitConfig.Id);
       var indexOfExisting = unitConfigs.IndexOf(existing);
-      unitConfigs.Insert(indexOfExisting, unit_config);
+      unitConfigs.Insert(indexOfExisting, unitConfig);
       unitConfigs.Remove(existing);
       SaveToFile(unitConfigs);
     }
 
-    private void InsertFriend(UnitConfig unit_config)
+    private void InsertUnitConfig(UnitConfig unitConfig)
     {
       var unitConfigs = ReadFromFile();
-      var maxFriendId = unitConfigs.Max(f => f.Id);
-      unit_config.Id = maxFriendId + 1;
-      unitConfigs.Add(unit_config);
+      var maxUnitConfigId = unitConfigs.Max(u => u.Id);
+      unitConfig.Id = maxUnitConfigId + 1;
+      unitConfigs.Add(unitConfig);
       SaveToFile(unitConfigs);
     }
 
@@ -65,7 +65,7 @@ namespace TerraBattle.DataAccess
       yield return new FriendGroup { Id = 4, Name = "Other" };
     }
 
-    public IEnumerable<UnitConfig> GetAllFriends()
+    public IEnumerable<UnitConfig> GetAllUnitConfigs()
     {
       return ReadFromFile();
     }
@@ -73,7 +73,7 @@ namespace TerraBattle.DataAccess
     public void Dispose()
     {
       // Usually Service-Proxies are disposable. This method is added as demo-purpose
-      // to show how to use an IDisposable in the client with a Func<T>. =>  Look for example at the FriendDataProvider-class
+      // to show how to use an IDisposable in the client with a Func<T>. =>  Look for example at the UnitConfigDataProvider-class
     }
 
     private void SaveToFile(List<UnitConfig> unitConfigList)

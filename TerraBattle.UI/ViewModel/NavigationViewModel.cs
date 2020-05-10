@@ -23,8 +23,8 @@ namespace TerraBattle.UI.ViewModel
       ILookupProvider<UnitConfig> unitConfigLookupProvider)
     {
       _eventAggregator = eventAggregator;
-      _eventAggregator.GetEvent<FriendSavedEvent>().Subscribe(OnFriendSaved);
-      _eventAggregator.GetEvent<FriendDeletedEvent>().Subscribe(OnFriendDeleted);
+      _eventAggregator.GetEvent<UnitConfigSavedEvent>().Subscribe(OnFriendSaved);
+      _eventAggregator.GetEvent<UnitConfigDeletedEvent>().Subscribe(OnFriendDeleted);
       _unitConfigLookupProvider = unitConfigLookupProvider;
       NavigationItems = new ObservableCollection<NavigationItemViewModel>();
     }
@@ -100,7 +100,7 @@ namespace TerraBattle.UI.ViewModel
 
     private void OpenFriendEditViewExecute(object obj)
     {
-      _eventAggregator.GetEvent<OpenFriendEditViewEvent>().Publish(FriendId);
+      _eventAggregator.GetEvent<OpenUnitConfigEditViewEvent>().Publish(FriendId);
     }
   }
 }

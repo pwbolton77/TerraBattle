@@ -2,7 +2,7 @@
 
 namespace TerraBattle.UI.Events
 {
-  public class FriendDeletedEvent : PubSubEvent<int>
+  public class UnitConfigDeletedEvent : PubSubEvent<int>
   {
   }
 }
