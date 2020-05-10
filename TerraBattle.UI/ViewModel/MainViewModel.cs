@@ -21,7 +21,7 @@ namespace TerraBattle.UI.ViewModel
     public MainViewModel(IEventAggregator eventAggregator,
         IMessageDialogService messageDialogService,
         INavigationViewModel navigationViewModel,
-        Func<IFriendEditViewModel> friendEditViewModelCreator)
+        Func<IFriendEditViewModel> unitConfigViewModelCreator)
     {
       _eventAggregator = eventAggregator;
       _messageDialogService = messageDialogService;
@@ -29,7 +29,7 @@ namespace TerraBattle.UI.ViewModel
       _eventAggregator.GetEvent<FriendDeletedEvent>().Subscribe(OnFriendDeleted);
 
       NavigationViewModel = navigationViewModel;
-      _unitConfigEditViewModelCreator = friendEditViewModelCreator;
+      _unitConfigEditViewModelCreator = unitConfigViewModelCreator;
       FriendEditViewModels = new ObservableCollection<IFriendEditViewModel>();
       CloseFriendTabCommand = new DelegateCommand(OnCloseFriendTabExecute);
       AddFriendCommand = new DelegateCommand(OnAddFriendExecute);
@@ -74,31 +74,31 @@ namespace TerraBattle.UI.ViewModel
 
     private void OnAddFriendExecute(object obj)
     {
-      IFriendEditViewModel friendEditVm = _unitConfigEditViewModelCreator();
-      FriendEditViewModels.Add(friendEditVm);
-      friendEditVm.Load();
-      SelectedFriendEditViewModel = friendEditVm;
+      IFriendEditViewModel unitConfigEditVm = _unitConfigEditViewModelCreator();
+      FriendEditViewModels.Add(unitConfigEditVm);
+      unitConfigEditVm.Load();
+      SelectedFriendEditViewModel = unitConfigEditVm;
     }
 
-    private void OnOpenFriendTab(int friendId)
+    private void OnOpenFriendTab(int unitConfigId)
     {
-      IFriendEditViewModel friendEditVm =
-        FriendEditViewModels.SingleOrDefault(vm => vm.Friend.Id == friendId);
-      if (friendEditVm == null)
+      IFriendEditViewModel unitConfigEditVm =
+        FriendEditViewModels.SingleOrDefault(vm => vm.Friend.Id == unitConfigId);
+      if (unitConfigEditVm == null)
       {
-        friendEditVm = _unitConfigEditViewModelCreator();
-        FriendEditViewModels.Add(friendEditVm);
-        friendEditVm.Load(friendId);
+        unitConfigEditVm = _unitConfigEditViewModelCreator();
+        FriendEditViewModels.Add(unitConfigEditVm);
+        unitConfigEditVm.Load(unitConfigId);
       }
-      SelectedFriendEditViewModel = friendEditVm;
+      SelectedFriendEditViewModel = unitConfigEditVm;
     }
 
     private void OnCloseFriendTabExecute(object parameter)
     {
-      var friendEditVmToClose = parameter as IFriendEditViewModel;
-      if (friendEditVmToClose != null)
+      var unitConfigEditVmToClose = parameter as IFriendEditViewModel;
+      if (unitConfigEditVmToClose != null)
       {
-        if(friendEditVmToClose.Friend.IsChanged)
+        if(unitConfigEditVmToClose.Friend.IsChanged)
         {
           var result = _messageDialogService.ShowYesNoDialog("Close tab?",
             "You'll lose your changes if you close this tab. Close it?",
@@ -108,17 +108,17 @@ namespace TerraBattle.UI.ViewModel
             return;
           }
         }
-        FriendEditViewModels.Remove(friendEditVmToClose);
+        FriendEditViewModels.Remove(unitConfigEditVmToClose);
       }
     }
 
-    private void OnFriendDeleted(int friendId)
+    private void OnFriendDeleted(int unitConfigId)
     {
-      IFriendEditViewModel friendDetailVmToClose
-        = FriendEditViewModels.SingleOrDefault(f => f.Friend.Id == friendId);
-      if (friendDetailVmToClose != null)
+      IFriendEditViewModel unitConfigDetailVmToClose
+        = FriendEditViewModels.SingleOrDefault(u => u.Friend.Id == unitConfigId);
+      if (unitConfigDetailVmToClose != null)
       {
-        FriendEditViewModels.Remove(friendDetailVmToClose);
+        FriendEditViewModels.Remove(unitConfigDetailVmToClose);
       }
     }
   }

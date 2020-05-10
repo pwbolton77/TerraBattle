@@ -11,10 +11,10 @@ namespace TerraBattle.DataAccess
   {
     private const string StorageFile = "Friends.json";
 
-    public UnitConfig GetFriendById(int friendId)
+    public UnitConfig GetFriendById(int unitConfigId)
     {
       var unitConfigs = ReadFromFile();
-      return unitConfigs.Single(f => f.Id == friendId);
+      return unitConfigs.Single(u => u.Id == unitConfigId);
     }
 
     public void SaveFriend(UnitConfig unit_config)
@@ -29,10 +29,10 @@ namespace TerraBattle.DataAccess
       }
     }
 
-    public void DeleteFriend(int friendId)
+    public void DeleteFriend(int unitConfigId)
     {
       var unitConfigs = ReadFromFile();
-      var existing = unitConfigs.Single(u => u.Id == friendId);
+      var existing = unitConfigs.Single(u => u.Id == unitConfigId);
       unitConfigs.Remove(existing);
       SaveToFile(unitConfigs);
     }
@@ -76,9 +76,9 @@ namespace TerraBattle.DataAccess
       // to show how to use an IDisposable in the client with a Func<T>. =>  Look for example at the FriendDataProvider-class
     }
 
-    private void SaveToFile(List<UnitConfig> friendList)
+    private void SaveToFile(List<UnitConfig> unitConfigList)
     {
-      string json = JsonConvert.SerializeObject(friendList, Formatting.Indented);
+      string json = JsonConvert.SerializeObject(unitConfigList, Formatting.Indented);
       File.WriteAllText(StorageFile, json);
     }
 

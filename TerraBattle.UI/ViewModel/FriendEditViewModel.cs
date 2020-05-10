@@ -13,7 +13,7 @@ namespace TerraBattle.UI.ViewModel
 {
   public interface IFriendEditViewModel
   {
-    void Load(int? friendId = null);
+    void Load(int? unitConfigId = null);
     UnitConfigWrapper Friend { get; }
   }
   public class FriendEditViewModel : Observable, IFriendEditViewModel
@@ -28,12 +28,12 @@ namespace TerraBattle.UI.ViewModel
 
     public FriendEditViewModel(IEventAggregator eventAggregator,
         IMessageDialogService messageDialogService,
-        IFriendDataProvider friendDataProvider,
+        IFriendDataProvider unitConfigDataProvider,
         ILookupProvider<FriendGroup> friendGroupLookupProvider)
     {
       _eventAggregator = eventAggregator;
       _messageDialogService = messageDialogService;
-      _unitConfigDataProvider = friendDataProvider;
+      _unitConfigDataProvider = unitConfigDataProvider;
       _friendGroupLookupProvider = friendGroupLookupProvider;
 
       SaveCommand = new DelegateCommand(OnSaveExecute, OnSaveCanExecute);
@@ -44,12 +44,12 @@ namespace TerraBattle.UI.ViewModel
       RemoveEmailCommand = new DelegateCommand(OnRemoveEmailExecute, OnRemoveEmailCanExecute);
     }
 
-    public void Load(int? friendId = null)
+    public void Load(int? unitConfigId = null)
     {
       FriendGroupLookup = _friendGroupLookupProvider.GetLookup();
 
-      var unit_config = friendId.HasValue
-          ? _unitConfigDataProvider.GetFriendById(friendId.Value)
+      var unit_config = unitConfigId.HasValue
+          ? _unitConfigDataProvider.GetFriendById(unitConfigId.Value)
           : new UnitConfig { Address = new Address(), Emails = new List<FriendEmail>() };
 
       Friend = new UnitConfigWrapper(unit_config);

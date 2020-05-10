@@ -20,34 +20,34 @@ namespace TerraBattle.UI.ViewModel
     private readonly ILookupProvider<UnitConfig> _unitConfigLookupProvider;
 
     public NavigationViewModel(IEventAggregator eventAggregator,
-      ILookupProvider<UnitConfig> friendLookupProvider)
+      ILookupProvider<UnitConfig> unitConfigLookupProvider)
     {
       _eventAggregator = eventAggregator;
       _eventAggregator.GetEvent<FriendSavedEvent>().Subscribe(OnFriendSaved);
       _eventAggregator.GetEvent<FriendDeletedEvent>().Subscribe(OnFriendDeleted);
-      _unitConfigLookupProvider = friendLookupProvider;
+      _unitConfigLookupProvider = unitConfigLookupProvider;
       NavigationItems = new ObservableCollection<NavigationItemViewModel>();
     }
 
     public void Load()
     {
       NavigationItems.Clear();
-      foreach (var friendLookupItem in _unitConfigLookupProvider.GetLookup())
+      foreach (var unitConfigLookupItem in _unitConfigLookupProvider.GetLookup())
       {
         NavigationItems.Add(
           new NavigationItemViewModel(
-            friendLookupItem.Id,
-            friendLookupItem.DisplayValue,
+            unitConfigLookupItem.Id,
+            unitConfigLookupItem.DisplayValue,
             _eventAggregator));
       }
     }
 
     public ObservableCollection<NavigationItemViewModel> NavigationItems { get; set; }
 
-    private void OnFriendDeleted(int friendId)
+    private void OnFriendDeleted(int unitConfigId)
     {
       var navigationItem =
-        NavigationItems.SingleOrDefault(item => item.FriendId == friendId);
+        NavigationItems.SingleOrDefault(item => item.FriendId == unitConfigId);
       if (navigationItem != null)
       {
         NavigationItems.Remove(navigationItem);
@@ -74,11 +74,11 @@ namespace TerraBattle.UI.ViewModel
     private readonly IEventAggregator _eventAggregator;
     private string _displayValue;
 
-    public NavigationItemViewModel(int friendId,
+    public NavigationItemViewModel(int unitConfigId,
       string displayValue,
       IEventAggregator eventAggregator)
     {
-      FriendId = friendId;
+      FriendId = unitConfigId;
       DisplayValue = displayValue;
       _eventAggregator = eventAggregator; ;
       OpenFriendEditViewCommand = new DelegateCommand(OpenFriendEditViewExecute);
