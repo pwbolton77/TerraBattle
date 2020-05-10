@@ -99,8 +99,8 @@
     <Compile Include="View\Controls\ChangeTrackingCollectionInfo.xaml.cs">
       <DependentUpon>ChangeTrackingCollectionInfo.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\FriendEditView.xaml.cs">
-      <DependentUpon>FriendEditView.xaml</DependentUpon>
+    <Compile Include="View\UnitConfigEditView.xaml.cs">
+      <DependentUpon>UnitConfigEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Services\IMessageDialogService.cs" />
     <Compile Include="View\Services\MessageDialog.xaml.cs">
@@ -179,7 +179,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\FriendEditView.xaml">
+    <Page Include="View\UnitConfigEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

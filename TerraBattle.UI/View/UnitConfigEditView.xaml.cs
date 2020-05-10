@@ -2,9 +2,9 @@
 
 namespace TerraBattle.UI.View
 {
-  public partial class FriendEditView : UserControl
+  public partial class UnitConfigEditView : UserControl
   {
-    public FriendEditView()
+    public UnitConfigEditView()
     {
       InitializeComponent();
     }

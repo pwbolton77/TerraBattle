@@ -74,7 +74,7 @@
       </TabControl.ItemTemplate>
       <TabControl.ContentTemplate>
         <DataTemplate>
-          <view:FriendEditView/>
+          <view:UnitConfigEditView/>
         </DataTemplate>
       </TabControl.ContentTemplate>
     </TabControl>
