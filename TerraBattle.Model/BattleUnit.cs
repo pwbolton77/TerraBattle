@@ -9,6 +9,8 @@ namespace TerraBattle.Model
 
     public string UnitName { get; set; }
 
+    public int OffenseRating { get; set; }
+
     // @@ PWB: Obslete fields
     public int FriendGroupId { get; set; }
 

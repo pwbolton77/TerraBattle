@@ -30,6 +30,16 @@ namespace TerraBattle.UI.Wrapper
 
     public bool UnitNameIsChanged => GetIsChanged(nameof(UnitName));
 
+    public System.Int32 OffenseRating
+    {
+      get { return GetValue<System.Int32>(); }
+      set { SetValue(value); }
+    }
+
+    public System.Int32 OffenseRatingOriginalValue => GetOriginalValue<System.Int32>(nameof(OffenseRating));
+
+    public bool OffenseRatingIsChanged => GetIsChanged(nameof(OffenseRating));
+
     public System.Int32 FriendGroupId
     {
       get { return GetValue<System.Int32>(); }

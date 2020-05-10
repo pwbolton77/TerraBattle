@@ -34,6 +34,9 @@
      <!--@@ PWB-->
     <Label Content="Unit Name" Grid.Row="0" Margin="5"/>
     <TextBox Text="{Binding Friend.UnitName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
+
+    <Label Content="Offense Rating" Grid.Row="0" Grid.Column="3" Margin="5"/>
+    <TextBox Text="{Binding Friend.OffenseRating,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="4"/>
      <!--@@ PWB-->
 
     <Label Content="Firstname" Grid.Row="1" Margin="5"/>
