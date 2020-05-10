@@ -12,12 +12,12 @@ namespace TerraBattle.UI.Wrapper.Tests
   [TestClass()]
   public class BasicTests
   {
-    private BattleUnit _friend;
+    private UnitConfig _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new BattleUnit
+      _friend = new UnitConfig
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -28,7 +28,7 @@ namespace TerraBattle.UI.Wrapper.Tests
     [TestMethod()]
     public void ShouldContainModelInModelProperty()
     {
-      var wrapper = new BattleUnitWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_friend);
       Assert.AreEqual(_friend, wrapper.Model);
     }
 
@@ -38,7 +38,7 @@ namespace TerraBattle.UI.Wrapper.Tests
     {
       try
       {
-        var wrapper = new BattleUnitWrapper(null);
+        var wrapper = new UnitConfigWrapper(null);
       }
       catch (ArgumentNullException ex)
       {
@@ -54,7 +54,7 @@ namespace TerraBattle.UI.Wrapper.Tests
       try
       {
         _friend.Address = null;
-        var wrapper = new BattleUnitWrapper(_friend);
+        var wrapper = new UnitConfigWrapper(_friend);
       }
       catch (ArgumentException ex)
       {
@@ -70,7 +70,7 @@ namespace TerraBattle.UI.Wrapper.Tests
       try
       {
         _friend.Emails = null;
-        var wrapper = new BattleUnitWrapper(_friend);
+        var wrapper = new UnitConfigWrapper(_friend);
       }
       catch (ArgumentException ex)
       {
@@ -82,14 +82,14 @@ namespace TerraBattle.UI.Wrapper.Tests
     [TestMethod]
     public void ShouldGetValueOfUnderlyingModelProperty()
     {
-      var wrapper = new BattleUnitWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_friend);
       Assert.AreEqual(_friend.FirstName, wrapper.FirstName);
     }
 
     [TestMethod]
     public void ShouldSetValueOfUnderlyingModelProperty()
     {
-      var wrapper = new BattleUnitWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_friend);
       wrapper.FirstName = "Julia";
       Assert.AreEqual("Julia", _friend.FirstName);
     }

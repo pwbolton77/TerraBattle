@@ -71,7 +71,7 @@
       <Name>TerraBattle.Model</Name>
     </ProjectReference>
     <ProjectReference Include="..\TerraBattle.UI\TerraBattle.UI.csproj">
-      <Project>{26DA8118-E070-4CC2-BA7E-FD96F8BF08B7}</Project>
+      <Project>{26da8118-e070-4cc2-ba7e-fd96f8bf08b7}</Project>
       <Name>TerraBattle.UI</Name>
     </ProjectReference>
   </ItemGroup>

@@ -117,9 +117,8 @@
     <Compile Include="Wrapper\Base\NotifyDataErrorInfoBase.cs" />
     <Compile Include="Wrapper\Custom\AddressWrapper.cs" />
     <Compile Include="Wrapper\Custom\FriendEmailWrapper.cs" />
-    <Compile Include="Wrapper\Custom\BattleUnitWrapper.cs" />
+    <Compile Include="Wrapper\Custom\UnitConfigWrapper.cs" />
     <Compile Include="Wrapper\Generated\AddressWrapper.g.cs" />
-    <Compile Include="Wrapper\Generated\BattleUnitWrapper.g.cs" />
     <Compile Include="Wrapper\Generated\FriendEmailWrapper.g.cs" />
     <Compile Include="Wrapper\Generated\FriendGroupWrapper.g.cs" />
     <Compile Include="Wrapper\Generated\GenerateModelWrappers.cs">
@@ -127,6 +126,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateModelWrappers.tt</DependentUpon>
     </Compile>
+    <Compile Include="Wrapper\Generated\UnitConfigWrapper.g.cs" />
     <Page Include="Styles\Brushes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

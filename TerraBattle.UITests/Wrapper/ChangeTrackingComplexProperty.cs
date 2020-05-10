@@ -12,12 +12,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ChangeTrackingComplexProperty
   {
-    private BattleUnit _friend;
+    private UnitConfig _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new BattleUnit
+      _friend = new UnitConfig
       {
         FirstName = "Thomas",
         Address = new Address { City = "Müllheim" },
@@ -28,7 +28,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsChangedOfFriendWrapper()
     {
-      var wrapper = new BattleUnitWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_friend);
       wrapper.Address.City = "Salt Lake City";
       Assert.IsTrue(wrapper.IsChanged);
 
@@ -40,7 +40,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsChangedPropertyOfFriendWrapper()
     {
       var fired = false;
-      var wrapper = new BattleUnitWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_friend);
       wrapper.PropertyChanged += (s, e) =>
         {
           if (e.PropertyName == nameof(wrapper.IsChanged))
@@ -56,7 +56,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldAcceptChanges()
     {
-      var wrapper = new BattleUnitWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_friend);
       wrapper.Address.City = "Salt Lake City";
       Assert.AreEqual("Müllheim", wrapper.Address.CityOriginalValue);
 
@@ -70,7 +70,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldRejectChanges()
     {
-      var wrapper = new BattleUnitWrapper(_friend);
+      var wrapper = new UnitConfigWrapper(_friend);
       wrapper.Address.City = "Salt Lake City";
       Assert.AreEqual("Müllheim", wrapper.Address.CityOriginalValue);
 

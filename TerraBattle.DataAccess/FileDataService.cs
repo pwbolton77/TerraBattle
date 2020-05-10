@@ -11,13 +11,13 @@ namespace TerraBattle.DataAccess
   {
     private const string StorageFile = "Friends.json";
 
-    public BattleUnit GetFriendById(int friendId)
+    public UnitConfig GetFriendById(int friendId)
     {
       var friends = ReadFromFile();
       return friends.Single(f => f.Id == friendId);
     }
 
-    public void SaveFriend(BattleUnit friend)
+    public void SaveFriend(UnitConfig friend)
     {
       if (friend.Id <= 0)
       {
@@ -37,7 +37,7 @@ namespace TerraBattle.DataAccess
       SaveToFile(friends);
     }
 
-    private void UpdateFriend(BattleUnit friend)
+    private void UpdateFriend(UnitConfig friend)
     {
       var friends = ReadFromFile();
       var existing = friends.Single(f => f.Id == friend.Id);
@@ -47,7 +47,7 @@ namespace TerraBattle.DataAccess
       SaveToFile(friends);
     }
 
-    private void InsertFriend(BattleUnit friend)
+    private void InsertFriend(UnitConfig friend)
     {
       var friends = ReadFromFile();
       var maxFriendId = friends.Max(f => f.Id);
@@ -65,7 +65,7 @@ namespace TerraBattle.DataAccess
       yield return new FriendGroup { Id = 4, Name = "Other" };
     }
 
-    public IEnumerable<BattleUnit> GetAllFriends()
+    public IEnumerable<UnitConfig> GetAllFriends()
     {
       return ReadFromFile();
     }
@@ -76,39 +76,39 @@ namespace TerraBattle.DataAccess
       // to show how to use an IDisposable in the client with a Func<T>. =>  Look for example at the FriendDataProvider-class
     }
 
-    private void SaveToFile(List<BattleUnit> friendList)
+    private void SaveToFile(List<UnitConfig> friendList)
     {
       string json = JsonConvert.SerializeObject(friendList, Formatting.Indented);
       File.WriteAllText(StorageFile, json);
     }
 
-    private List<BattleUnit> ReadFromFile()
+    private List<UnitConfig> ReadFromFile()
     {
       if (!File.Exists(StorageFile))
       {
-        return new List<BattleUnit>
+        return new List<UnitConfig>
                 {
-                    new BattleUnit{Id=1,FirstName = "Thomas",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
+                    new UnitConfig{Id=1,FirstName = "Thomas",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
                         Birthday = new DateTime(1980,10,28), IsDeveloper = true,Emails=new List<FriendEmail>{new FriendEmail{Email="thomas@thomasclaudiushuber.com"}},FriendGroupId = 1},
-                    new BattleUnit{Id=2,FirstName = "Julia",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
+                    new UnitConfig{Id=2,FirstName = "Julia",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
                         Birthday = new DateTime(1982,10,10),Emails=new List<FriendEmail>{new FriendEmail{Email="julia@juhu-design.com"}},FriendGroupId = 1},
-                    new BattleUnit{Id=3,FirstName="Anna",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
+                    new UnitConfig{Id=3,FirstName="Anna",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
                         Birthday = new DateTime(2011,05,13),Emails=new List<FriendEmail>(),FriendGroupId = 1},
-                    new BattleUnit{Id=4,FirstName="Sara",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
+                    new UnitConfig{Id=4,FirstName="Sara",LastName="Huber",Address=new Address{City="Müllheim",Street="Elmstreet",StreetNumber = "12345"},
                         Birthday = new DateTime(2013,02,25),Emails=new List<FriendEmail>(),FriendGroupId = 1},
-                    new BattleUnit{Id=5,FirstName = "Andreas",LastName="Böhler",Address=new Address{City="Tiengen",Street="Hardstreet",StreetNumber = "5"},
+                    new UnitConfig{Id=5,FirstName = "Andreas",LastName="Böhler",Address=new Address{City="Tiengen",Street="Hardstreet",StreetNumber = "5"},
                         Birthday = new DateTime(1981,01,10), IsDeveloper = true,Emails=new List<FriendEmail>{new FriendEmail{Email="andreas@strenggeheim.de"}},FriendGroupId = 2},
-                    new BattleUnit{Id=6,FirstName="Urs",LastName="Meier",Address=new Address{City="Bern",Street="Baslerstrasse",StreetNumber = "17"},
+                    new UnitConfig{Id=6,FirstName="Urs",LastName="Meier",Address=new Address{City="Bern",Street="Baslerstrasse",StreetNumber = "17"},
                         Birthday = new DateTime(1970,03,5), IsDeveloper = true,Emails=new List<FriendEmail>{new FriendEmail{Email="urs@strenggeheim.ch"}},FriendGroupId = 2},
-                     new BattleUnit{Id=7,FirstName="Chrissi",LastName="Heuberger",Address=new Address{City="Hillhome",Street="Freiburgerstrasse",StreetNumber = "32"},
+                     new UnitConfig{Id=7,FirstName="Chrissi",LastName="Heuberger",Address=new Address{City="Hillhome",Street="Freiburgerstrasse",StreetNumber = "32"},
                         Birthday = new DateTime(1987,07,16),Emails=new List<FriendEmail>{new FriendEmail{Email="chrissi@web.de"}},FriendGroupId = 2},
-                     new BattleUnit{Id=8,FirstName="Erkan",LastName="Egin",Address=new Address{City="Neuenburg",Street="Rheinweg",StreetNumber = "4"},
+                     new UnitConfig{Id=8,FirstName="Erkan",LastName="Egin",Address=new Address{City="Neuenburg",Street="Rheinweg",StreetNumber = "4"},
                         Birthday = new DateTime(1983,05,23),Emails=new List<FriendEmail>{new FriendEmail{Email="erko@web.de"}},FriendGroupId = 2},
                 };
       }
 
       string json = File.ReadAllText(StorageFile);
-      return JsonConvert.DeserializeObject<List<BattleUnit>>(json);
+      return JsonConvert.DeserializeObject<List<UnitConfig>>(json);
     }
   }
 }

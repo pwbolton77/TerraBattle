@@ -4,9 +4,9 @@ namespace TerraBattle.UI.DataProvider
 {
   public interface IFriendDataProvider
   {
-    BattleUnit GetFriendById(int id);
+    UnitConfig GetFriendById(int id);
 
-    void SaveFriend(BattleUnit friend);
+    void SaveFriend(UnitConfig friend);
 
     void DeleteFriend(int id);
   }

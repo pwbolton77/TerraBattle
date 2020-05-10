@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace TerraBattle.UI.Wrapper
 {
-    public partial class BattleUnitWrapper
+    public partial class UnitConfigWrapper
     {
         public static int OffenseRatingMin { get { return 1; } }
-        public static int OffenseRatingMax { get { return 150; } }
+        public static int OffenseRatingMax { get { return 100; } }
 
         public bool OffenseRatingInRange(int value)  { return (value >= OffenseRatingMin && value <= OffenseRatingMax); }
         public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TerraBattle.Model
 {
-  public class BattleUnit
+  public class UnitConfig
   {
     public int Id { get; set; }
 

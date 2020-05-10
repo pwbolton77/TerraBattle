@@ -40,7 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
-    <Compile Include="BattleUnit.cs" />
+    <Compile Include="UnitConfig.cs" />
     <Compile Include="FriendEmail.cs" />
     <Compile Include="FriendGroup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
