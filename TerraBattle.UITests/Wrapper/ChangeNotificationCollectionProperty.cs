@@ -12,14 +12,14 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ChangeNotificationCollectionProperty
   {
-    private Friend _friend;
+    private BattleUnit _friend;
     private FriendEmail _friendEmail;
 
     [TestInitialize]
     public void Initialize()
     {
       _friendEmail = new FriendEmail { Email = "thomas@thomasclaudiushuber.com" };
-      _friend = new Friend
+      _friend = new BattleUnit
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -34,7 +34,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldInitializeEmailsProperty()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.IsNotNull(wrapper.Emails);
       CheckIfModelEmailsCollectionIsInSync(wrapper);
     }
@@ -42,7 +42,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldBeInSyncAfterRemovingEmail()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       var emailToRemove = wrapper.Emails.Single(ew => ew.Model == _friendEmail);
       wrapper.Emails.Remove(emailToRemove);
       CheckIfModelEmailsCollectionIsInSync(wrapper);
@@ -52,7 +52,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldBeInSyncAfterAddingEmail()
     {
       _friend.Emails.Remove(_friendEmail);
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.Emails.Add(new FriendEmailWrapper(_friendEmail));
       CheckIfModelEmailsCollectionIsInSync(wrapper);
     }
@@ -60,12 +60,12 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldBeInSyncAfterClearingEmails()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.Emails.Clear();
       CheckIfModelEmailsCollectionIsInSync(wrapper);
     }
 
-    private void CheckIfModelEmailsCollectionIsInSync(FriendWrapper wrapper)
+    private void CheckIfModelEmailsCollectionIsInSync(BattleUnitWrapper wrapper)
     {
       Assert.AreEqual(_friend.Emails.Count, wrapper.Emails.Count);
       Assert.IsTrue(_friend.Emails.All(e =>

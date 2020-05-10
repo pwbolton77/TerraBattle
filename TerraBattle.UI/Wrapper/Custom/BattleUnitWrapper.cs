@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TerraBattle.UI.Wrapper
 {
-  public partial class FriendWrapper
+  public partial class BattleUnitWrapper
   {
     public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {

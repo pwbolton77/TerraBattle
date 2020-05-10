@@ -14,7 +14,7 @@ namespace TerraBattle.UI.ViewModel
   public interface IFriendEditViewModel
   {
     void Load(int? friendId = null);
-    FriendWrapper Friend { get; }
+    BattleUnitWrapper Friend { get; }
   }
   public class FriendEditViewModel : Observable, IFriendEditViewModel
   {
@@ -22,7 +22,7 @@ namespace TerraBattle.UI.ViewModel
     private readonly IMessageDialogService _messageDialogService;
     private readonly IFriendDataProvider _friendDataProvider;
     private readonly ILookupProvider<FriendGroup> _friendGroupLookupProvider;
-    private FriendWrapper _friend;
+    private BattleUnitWrapper _friend;
     private IEnumerable<LookupItem> _friendGroups;
     private FriendEmailWrapper _selectedEmail;
 
@@ -50,9 +50,9 @@ namespace TerraBattle.UI.ViewModel
 
       var friend = friendId.HasValue
           ? _friendDataProvider.GetFriendById(friendId.Value)
-          : new Friend { Address = new Address(), Emails = new List<FriendEmail>() };
+          : new BattleUnit { Address = new Address(), Emails = new List<FriendEmail>() };
 
-      Friend = new FriendWrapper(friend);
+      Friend = new BattleUnitWrapper(friend);
       Friend.PropertyChanged += (s, e) =>
         {
           if (e.PropertyName == nameof(Friend.IsChanged)
@@ -65,7 +65,7 @@ namespace TerraBattle.UI.ViewModel
       InvalidateCommands();
     }
 
-    public FriendWrapper Friend
+    public BattleUnitWrapper Friend
     {
       get { return _friend; }
       private set

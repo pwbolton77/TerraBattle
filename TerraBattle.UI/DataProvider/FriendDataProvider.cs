@@ -13,7 +13,7 @@ namespace TerraBattle.UI.DataProvider
       _dataServiceCreator = dataServiceCreator;
     }
 
-    public Friend GetFriendById(int id)
+    public BattleUnit GetFriendById(int id)
     {
       using (var dataService = _dataServiceCreator())
       {
@@ -21,7 +21,7 @@ namespace TerraBattle.UI.DataProvider
       }
     }
 
-    public void SaveFriend(Friend friend)
+    public void SaveFriend(BattleUnit friend)
     {
       using (var dataService = _dataServiceCreator())
       {

@@ -12,12 +12,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ValidationComplexProperty
   {
-    private Friend _friend;
+    private BattleUnit _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new Friend
+      _friend = new BattleUnit
       {
         FirstName = "Thomas",
         Address = new Address { City = "Müllheim" },
@@ -28,7 +28,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsValidOfRoot()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.IsTrue(wrapper.IsValid);
 
       wrapper.Address.City = "";
@@ -42,7 +42,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldSetIsValidOfRootAfterInitialization()
     {
       _friend.Address.City = "";
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.IsFalse(wrapper.IsValid);
 
       wrapper.Address.City = "Salt Lake City";
@@ -53,7 +53,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsValidOfRoot()
     {
       var fired = false;
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == nameof(wrapper.IsValid))

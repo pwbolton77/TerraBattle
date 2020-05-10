@@ -6,13 +6,13 @@ namespace TerraBattle.DataAccess
 {
     public interface IDataService : IDisposable
     {
-        Friend GetFriendById(int friendId);
+        BattleUnit GetFriendById(int friendId);
 
-        void SaveFriend(Friend friend);
+        void SaveFriend(BattleUnit friend);
 
         void DeleteFriend(int friendId);
 
-        IEnumerable<Friend> GetAllFriends();
+        IEnumerable<BattleUnit> GetAllFriends();
 
         IEnumerable<FriendGroup> GetAllFriendGroups();
     }

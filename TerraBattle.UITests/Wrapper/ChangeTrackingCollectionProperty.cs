@@ -12,12 +12,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ChangeTrackingCollectionProperty
   {
-    private Friend _friend;
+    private BattleUnit _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new Friend
+      _friend = new BattleUnit
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -32,7 +32,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsChangedOfFriendWrapper()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       var emailToModify = wrapper.Emails.First();
       emailToModify.Email = "modified@thomasclaudiushuber.com";
 
@@ -46,7 +46,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsChangedPropertyOfFriendWrapper()
     {
       var fired = false;
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.PropertyChanged += (s, e) =>
         {
           if (e.PropertyName == nameof(wrapper.IsChanged))
@@ -62,7 +62,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldAcceptChanges()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
 
       var emailToModify = wrapper.Emails.First();
       emailToModify.Email = "modified@thomasclaudiushuber.com";
@@ -79,7 +79,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldRejectChanges()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
 
       var emailToModify = wrapper.Emails.First();
       emailToModify.Email = "modified@thomasclaudiushuber.com";

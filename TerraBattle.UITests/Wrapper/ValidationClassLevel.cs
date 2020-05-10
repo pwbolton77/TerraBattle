@@ -9,12 +9,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ValidationClassLevel
   {
-    private Friend _friend;
+    private BattleUnit _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new Friend
+      _friend = new BattleUnit
       {
         FirstName = "Thomas",
         Address = new Address { City = "Müllheim" },
@@ -31,7 +31,7 @@ namespace TerraBattle.UITests.Wrapper
     {
       var expectedError = "A developer must have an email-address";
 
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.Emails.Clear();
       Assert.IsFalse(wrapper.IsDeveloper);
       Assert.IsTrue(wrapper.IsValid);
@@ -51,7 +51,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldBeValidAgainWhenIsDeveloperIsSetBackToFalse()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.Emails.Clear();
       Assert.IsFalse(wrapper.IsDeveloper);
       Assert.IsTrue(wrapper.IsValid);
@@ -73,7 +73,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldBeValidAgainWhenEmailIsAdded()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.Emails.Clear();
       Assert.IsFalse(wrapper.IsDeveloper);
       Assert.IsTrue(wrapper.IsValid);
@@ -95,7 +95,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldIntializeWithoutProblems()
     {
       _friend.IsDeveloper = true;
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.IsTrue(wrapper.IsValid);
     }
   }

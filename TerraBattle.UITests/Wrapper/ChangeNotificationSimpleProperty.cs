@@ -12,12 +12,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
  public class ChangeNotificationSimpleProperty
   {
-    private Friend _friend;
+    private BattleUnit _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new Friend
+      _friend = new BattleUnit
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -29,7 +29,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventOnPropertyChange()
     {
       var fired = false;
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == "FirstName")
@@ -45,7 +45,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldNotRaisePropertyChangedEventIfPropertyIsSetToSameValue()
     {
       var fired = false;
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.PropertyChanged += (s, e) =>
       {
         if (e.PropertyName == "FirstName")

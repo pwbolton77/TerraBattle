@@ -19,7 +19,7 @@ namespace TerraBattle.UI.Startup
       builder.RegisterType<MessageDialogService>().As<IMessageDialogService>();
 
       builder.RegisterType<FileDataService>().As<IDataService>();
-      builder.RegisterType<FriendLookupProvider>().As<ILookupProvider<Friend>>();
+      builder.RegisterType<FriendLookupProvider>().As<ILookupProvider<BattleUnit>>();
       builder.RegisterType<FriendGroupLookupProvider>().As<ILookupProvider<FriendGroup>>();
       builder.RegisterType<FriendDataProvider>().As<IFriendDataProvider>();
 

@@ -52,7 +52,7 @@ namespace TerraBattle.UI.Wrapper
 <#+ 
   private IEnumerable<Type> GetModelTypes()
   {
-	return typeof(Friend).Assembly.GetTypes();
+	return typeof(BattleUnit).Assembly.GetTypes();
   }
 
   private void SaveGeneratedCodeAsFile(string fileName)

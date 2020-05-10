@@ -12,12 +12,12 @@ namespace TerraBattle.UI.Wrapper.Tests
   [TestClass()]
   public class BasicTests
   {
-    private Friend _friend;
+    private BattleUnit _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new Friend
+      _friend = new BattleUnit
       {
         FirstName = "Thomas",
         Address = new Address(),
@@ -28,7 +28,7 @@ namespace TerraBattle.UI.Wrapper.Tests
     [TestMethod()]
     public void ShouldContainModelInModelProperty()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.AreEqual(_friend, wrapper.Model);
     }
 
@@ -38,7 +38,7 @@ namespace TerraBattle.UI.Wrapper.Tests
     {
       try
       {
-        var wrapper = new FriendWrapper(null);
+        var wrapper = new BattleUnitWrapper(null);
       }
       catch (ArgumentNullException ex)
       {
@@ -54,7 +54,7 @@ namespace TerraBattle.UI.Wrapper.Tests
       try
       {
         _friend.Address = null;
-        var wrapper = new FriendWrapper(_friend);
+        var wrapper = new BattleUnitWrapper(_friend);
       }
       catch (ArgumentException ex)
       {
@@ -70,7 +70,7 @@ namespace TerraBattle.UI.Wrapper.Tests
       try
       {
         _friend.Emails = null;
-        var wrapper = new FriendWrapper(_friend);
+        var wrapper = new BattleUnitWrapper(_friend);
       }
       catch (ArgumentException ex)
       {
@@ -82,14 +82,14 @@ namespace TerraBattle.UI.Wrapper.Tests
     [TestMethod]
     public void ShouldGetValueOfUnderlyingModelProperty()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.AreEqual(_friend.FirstName, wrapper.FirstName);
     }
 
     [TestMethod]
     public void ShouldSetValueOfUnderlyingModelProperty()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       wrapper.FirstName = "Julia";
       Assert.AreEqual("Julia", _friend.FirstName);
     }

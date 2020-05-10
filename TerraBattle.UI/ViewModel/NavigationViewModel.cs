@@ -17,10 +17,10 @@ namespace TerraBattle.UI.ViewModel
   public class NavigationViewModel : INavigationViewModel
   {
     private readonly IEventAggregator _eventAggregator;
-    private readonly ILookupProvider<Friend> _friendLookupProvider;
+    private readonly ILookupProvider<BattleUnit> _friendLookupProvider;
 
     public NavigationViewModel(IEventAggregator eventAggregator,
-      ILookupProvider<Friend> friendLookupProvider)
+      ILookupProvider<BattleUnit> friendLookupProvider)
     {
       _eventAggregator = eventAggregator;
       _eventAggregator.GetEvent<FriendSavedEvent>().Subscribe(OnFriendSaved);
@@ -54,7 +54,7 @@ namespace TerraBattle.UI.ViewModel
       }
     }
 
-    private void OnFriendSaved(Friend savedFriend)
+    private void OnFriendSaved(BattleUnit savedFriend)
     {
       var navigationItem =
         NavigationItems.SingleOrDefault(item => item.FriendId == savedFriend.Id);

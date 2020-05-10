@@ -6,7 +6,7 @@ using TerraBattle.Model;
 
 namespace TerraBattle.UI.DataProvider.Lookups
 {
-  public class FriendLookupProvider : ILookupProvider<Friend>
+  public class FriendLookupProvider : ILookupProvider<BattleUnit>
   {
     private readonly Func<IDataService> _dataServiceCreator;
 

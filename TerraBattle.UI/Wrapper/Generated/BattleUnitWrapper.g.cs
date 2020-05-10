@@ -4,9 +4,9 @@ using TerraBattle.Model;
 
 namespace TerraBattle.UI.Wrapper
 {
-  public partial class FriendWrapper : ModelWrapper<Friend>
+  public partial class BattleUnitWrapper : ModelWrapper<BattleUnit>
   {
-    public FriendWrapper(Friend model) : base(model)
+    public BattleUnitWrapper(BattleUnit model) : base(model)
     {
     }
 
@@ -84,7 +84,7 @@ namespace TerraBattle.UI.Wrapper
  
     public ChangeTrackingCollection<FriendEmailWrapper> Emails { get; private set; }
     
-    protected override void InitializeComplexProperties(Friend model)
+    protected override void InitializeComplexProperties(BattleUnit model)
     {
       if (model.Address == null)
       {
@@ -94,7 +94,7 @@ namespace TerraBattle.UI.Wrapper
       RegisterComplex(Address);
     }
 
-    protected override void InitializeCollectionProperties(Friend model)
+    protected override void InitializeCollectionProperties(BattleUnit model)
     {
       if (model.Emails == null)
       {

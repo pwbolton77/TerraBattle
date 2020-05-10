@@ -9,12 +9,12 @@ namespace TerraBattle.UITests.Wrapper
   [TestClass]
   public class ValidationSimpleProperty
   {
-    private Friend _friend;
+    private BattleUnit _friend;
 
     [TestInitialize]
     public void Initialize()
     {
-      _friend = new Friend
+      _friend = new BattleUnit
       {
         FirstName = "Thomas",
         Address = new Address { City = "Müllheim" },
@@ -25,7 +25,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldReturnValidationErrorIfFirstNameIsEmpty()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.IsFalse(wrapper.HasErrors);
 
       wrapper.FirstName = "";
@@ -43,7 +43,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaiseErrorsChangedEventWhenFirstNameIsSetToEmptyAndBack()
     {
       var fired = false;
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
 
       wrapper.ErrorsChanged += (s, e) =>
       {
@@ -64,7 +64,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldSetIsValid()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.IsTrue(wrapper.IsValid);
 
       wrapper.FirstName = "";
@@ -78,7 +78,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldRaisePropertyChangedEventForIsValid()
     {
       var fired = false;
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
 
       wrapper.PropertyChanged += (s, e) =>
       {
@@ -100,7 +100,7 @@ namespace TerraBattle.UITests.Wrapper
     public void ShouldSetErrorsAndIsValidAfterInitialization()
     {
       _friend.FirstName = "";
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
 
       Assert.IsFalse(wrapper.IsValid);
       Assert.IsTrue(wrapper.HasErrors);
@@ -113,7 +113,7 @@ namespace TerraBattle.UITests.Wrapper
     [TestMethod]
     public void ShouldRefreshErrorsAndIsValidWhenRejectingChanges()
     {
-      var wrapper = new FriendWrapper(_friend);
+      var wrapper = new BattleUnitWrapper(_friend);
       Assert.IsTrue(wrapper.IsValid);
       Assert.IsFalse(wrapper.HasErrors);
 

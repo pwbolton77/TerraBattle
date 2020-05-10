@@ -3,7 +3,7 @@ using Microsoft.Practices.Prism.PubSubEvents;
 
 namespace TerraBattle.UI.Events
 {
-  public class FriendSavedEvent : PubSubEvent<Friend>
+  public class FriendSavedEvent : PubSubEvent<BattleUnit>
   {
   }
 }
