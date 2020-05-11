@@ -35,7 +35,7 @@
     <ItemsControl ItemsSource="{Binding NavigationItems}" Foreground="White">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
-          <Button Command="{Binding OpenFriendEditViewCommand}"
+          <Button Command="{Binding OpenUnitConfigEditViewCommand}"
                     Content="{Binding DisplayValue}" 
                     Style="{StaticResource NavigationButtonStyle}"/>
         </DataTemplate>

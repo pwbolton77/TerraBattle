@@ -33,40 +33,40 @@
       
      <!--@@ PWB-->
     <Label Content="Unit Name" Grid.Row="0" Margin="5"/>
-    <TextBox Text="{Binding Friend.UnitName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
+    <TextBox Text="{Binding UnitConfig.UnitName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"/>
 
     <Label Content="Offense Rating" Grid.Row="0" Grid.Column="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.OffenseRating,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="4"/>
+    <TextBox Text="{Binding UnitConfig.OffenseRating,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="4"/>
      <!--@@ PWB-->
 
     <Label Content="Firstname" Grid.Row="1" Margin="5"/>
-    <TextBox Text="{Binding Friend.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"/>
+    <TextBox Text="{Binding UnitConfig.FirstName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"/>
 
     <Label Content="Lastname" Grid.Row="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1"/>
+    <TextBox Text="{Binding UnitConfig.LastName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1"/>
 
     <Label Content="Birthday" Grid.Row="4" Margin="5"/>
-    <DatePicker SelectedDate="{Binding Friend.Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"/>
+    <DatePicker SelectedDate="{Binding UnitConfig.Birthday,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1"/>
 
     <Label Content="Is Developer" Grid.Row="5" Margin="5 0"/>
-    <CheckBox IsChecked="{Binding Friend.IsDeveloper,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+    <CheckBox IsChecked="{Binding UnitConfig.IsDeveloper,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="5" VerticalAlignment="Center" HorizontalAlignment="Left"  Grid.Column="1"/>
 
     <Label Content="Friendgroup" Grid.Row="6" Margin="5"/>
     <ComboBox ItemsSource="{Binding FriendGroupLookup}"
                       DisplayMemberPath="DisplayValue"
                       SelectedValuePath="Id"
-                      SelectedValue="{Binding Friend.FriendGroupId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                      SelectedValue="{Binding UnitConfig.FriendGroupId,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                      Grid.Row="6" Grid.Column="1" VerticalAlignment="Center"/>
 
     <Label Content="City" Grid.Row="1" Grid.Column="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.Address.City,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="4"/>
+    <TextBox Text="{Binding UnitConfig.Address.City,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="4"/>
 
     <Label Content="Street" Grid.Row="3" Grid.Column="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.Address.Street,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="4"/>
+    <TextBox Text="{Binding UnitConfig.Address.Street,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="4"/>
 
     <Label Content="Streetnumber" Grid.Row="4" Grid.Column="3" Margin="5"/>
-    <TextBox Text="{Binding Friend.Address.StreetNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="4"/>
+    <TextBox Text="{Binding UnitConfig.Address.StreetNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="4"/>
 
     <StackPanel Grid.Row="7">
       <Label Content="Emails" Margin="5" VerticalAlignment="Top"/>
@@ -74,7 +74,7 @@
       <Button Command="{Binding RemoveEmailCommand}" Style="{StaticResource RemoveButtonStyle}" HorizontalAlignment="Right"/>
     </StackPanel>
 
-    <DataGrid ItemsSource="{Binding Friend.Emails}" SelectedItem="{Binding SelectedEmail,Mode=TwoWay}" Grid.Row="7" 
+    <DataGrid ItemsSource="{Binding UnitConfig.Emails}" SelectedItem="{Binding SelectedEmail,Mode=TwoWay}" Grid.Row="7" 
             behaviors:DataGridChangeBehavior.IsActive="True"  Grid.Column="1" Grid.ColumnSpan="4" Margin="0 5 0 0" Width="538">
       <DataGrid.Columns>
         <DataGridTextColumn Header="Email" Binding="{Binding Email,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="300"/>
@@ -82,7 +82,7 @@
       </DataGrid.Columns>
     </DataGrid>
 
-    <controls:ChangeTrackingCollectionInfo DataContext="{Binding Friend.Emails, ValidatesOnNotifyDataErrors=False}"
+    <controls:ChangeTrackingCollectionInfo DataContext="{Binding UnitConfig.Emails, ValidatesOnNotifyDataErrors=False}"
        Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="4"/>
 
     <StackPanel Grid.Row="9" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">

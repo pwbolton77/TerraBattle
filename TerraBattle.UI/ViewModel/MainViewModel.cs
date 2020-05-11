@@ -30,9 +30,9 @@ namespace TerraBattle.UI.ViewModel
 
       NavigationViewModel = navigationViewModel;
       _unitConfigEditViewModelCreator = unitConfigViewModelCreator;
-      FriendEditViewModels = new ObservableCollection<IUnitConfigEditViewModel>();
-      CloseFriendTabCommand = new DelegateCommand(OnCloseUnitConfigTabExecute);
-      AddFriendCommand = new DelegateCommand(OnAddUnitConfigExecute);
+      UnitConfigEditViewModels = new ObservableCollection<IUnitConfigEditViewModel>();
+      CloseUnitConfigTabCommand = new DelegateCommand(OnCloseUnitConfigTabExecute);
+      AddUnitConfigCommand = new DelegateCommand(OnAddUnitConfigExecute);
     }
 
     public void Load()
@@ -42,7 +42,7 @@ namespace TerraBattle.UI.ViewModel
 
     public void OnClosing(CancelEventArgs e)
     {
-      if(FriendEditViewModels.Any(f=>f.Friend.IsChanged))
+      if(UnitConfigEditViewModels.Any(u=>u.UnitConfig.IsChanged))
       {
         var result = _messageDialogService.ShowYesNoDialog("Close application?",
           "You'll lose your changes if you close this application. Close it?",
@@ -51,16 +51,16 @@ namespace TerraBattle.UI.ViewModel
       }
     }
 
-    public ICommand CloseFriendTabCommand { get; private set; }
+    public ICommand CloseUnitConfigTabCommand { get; private set; }
 
-    public ICommand AddFriendCommand { get; set; }
+    public ICommand AddUnitConfigCommand { get; set; }
 
     public INavigationViewModel NavigationViewModel { get; private set; }
 
     // Those ViewModels represent the Tab-Pages in the UI
-    public ObservableCollection<IUnitConfigEditViewModel> FriendEditViewModels { get; private set; }
+    public ObservableCollection<IUnitConfigEditViewModel> UnitConfigEditViewModels { get; private set; }
 
-    public IUnitConfigEditViewModel SelectedFriendEditViewModel
+    public IUnitConfigEditViewModel SelectedUnitConfigEditViewModel
     {
       get { return _selectedUnitConfigEditViewModel; }
       set
@@ -70,27 +70,27 @@ namespace TerraBattle.UI.ViewModel
       }
     }
 
-    public bool IsChanged => FriendEditViewModels.Any(u => u.Friend.IsChanged);
+    public bool IsChanged => UnitConfigEditViewModels.Any(u => u.UnitConfig.IsChanged);
 
     private void OnAddUnitConfigExecute(object obj)
     {
       IUnitConfigEditViewModel unitConfigEditVm = _unitConfigEditViewModelCreator();
-      FriendEditViewModels.Add(unitConfigEditVm);
+      UnitConfigEditViewModels.Add(unitConfigEditVm);
       unitConfigEditVm.Load();
-      SelectedFriendEditViewModel = unitConfigEditVm;
+      SelectedUnitConfigEditViewModel = unitConfigEditVm;
     }
 
     private void OnOpenUnitConfigTab(int unitConfigId)
     {
       IUnitConfigEditViewModel unitConfigEditVm =
-        FriendEditViewModels.SingleOrDefault(vm => vm.Friend.Id == unitConfigId);
+        UnitConfigEditViewModels.SingleOrDefault(vm => vm.UnitConfig.Id == unitConfigId);
       if (unitConfigEditVm == null)
       {
         unitConfigEditVm = _unitConfigEditViewModelCreator();
-        FriendEditViewModels.Add(unitConfigEditVm);
+        UnitConfigEditViewModels.Add(unitConfigEditVm);
         unitConfigEditVm.Load(unitConfigId);
       }
-      SelectedFriendEditViewModel = unitConfigEditVm;
+      SelectedUnitConfigEditViewModel = unitConfigEditVm;
     }
 
     private void OnCloseUnitConfigTabExecute(object parameter)
@@ -98,7 +98,7 @@ namespace TerraBattle.UI.ViewModel
       var unitConfigEditVmToClose = parameter as IUnitConfigEditViewModel;
       if (unitConfigEditVmToClose != null)
       {
-        if(unitConfigEditVmToClose.Friend.IsChanged)
+        if(unitConfigEditVmToClose.UnitConfig.IsChanged)
         {
           var result = _messageDialogService.ShowYesNoDialog("Close tab?",
             "You'll lose your changes if you close this tab. Close it?",
@@ -108,17 +108,17 @@ namespace TerraBattle.UI.ViewModel
             return;
           }
         }
-        FriendEditViewModels.Remove(unitConfigEditVmToClose);
+        UnitConfigEditViewModels.Remove(unitConfigEditVmToClose);
       }
     }
 
     private void OnUnitConfigDeleted(int unitConfigId)
     {
       IUnitConfigEditViewModel unitConfigDetailVmToClose
-        = FriendEditViewModels.SingleOrDefault(u => u.Friend.Id == unitConfigId);
+        = UnitConfigEditViewModels.SingleOrDefault(u => u.UnitConfig.Id == unitConfigId);
       if (unitConfigDetailVmToClose != null)
       {
-        FriendEditViewModels.Remove(unitConfigDetailVmToClose);
+        UnitConfigEditViewModels.Remove(unitConfigDetailVmToClose);
       }
     }
   }

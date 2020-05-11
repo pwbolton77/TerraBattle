@@ -14,7 +14,7 @@ namespace TerraBattle.UI.ViewModel
   public interface IUnitConfigEditViewModel
   {
     void Load(int? unitConfigId = null);
-    UnitConfigWrapper Friend { get; }
+    UnitConfigWrapper UnitConfig { get; }
   }
   public class UnitConfigEditViewModel : Observable, IUnitConfigEditViewModel
   {
@@ -52,11 +52,11 @@ namespace TerraBattle.UI.ViewModel
           ? _unitConfigDataProvider.GetUnitConfigById(unitConfigId.Value)
           : new UnitConfig { Address = new Address(), Emails = new List<FriendEmail>() };
 
-      Friend = new UnitConfigWrapper(unitConfig);
-      Friend.PropertyChanged += (s, e) =>
+      UnitConfig = new UnitConfigWrapper(unitConfig);
+      UnitConfig.PropertyChanged += (s, e) =>
         {
-          if (e.PropertyName == nameof(Friend.IsChanged)
-          || e.PropertyName == nameof(Friend.IsValid))
+          if (e.PropertyName == nameof(UnitConfig.IsChanged)
+          || e.PropertyName == nameof(UnitConfig.IsValid))
           {
             InvalidateCommands();
           }
@@ -65,7 +65,7 @@ namespace TerraBattle.UI.ViewModel
       InvalidateCommands();
     }
 
-    public UnitConfigWrapper Friend
+    public UnitConfigWrapper UnitConfig
     {
       get { return _unitConfigs; }
       private set
@@ -108,49 +108,49 @@ namespace TerraBattle.UI.ViewModel
 
     private void OnSaveExecute(object obj)
     {
-      _unitConfigDataProvider.SaveUnitConfig(Friend.Model);
-      Friend.AcceptChanges();
-      _eventAggregator.GetEvent<UnitConfigSavedEvent>().Publish(Friend.Model);
+      _unitConfigDataProvider.SaveUnitConfig(UnitConfig.Model);
+      UnitConfig.AcceptChanges();
+      _eventAggregator.GetEvent<UnitConfigSavedEvent>().Publish(UnitConfig.Model);
       InvalidateCommands();
     }
 
     private bool OnSaveCanExecute(object arg)
     {
-      return Friend.IsChanged && Friend.IsValid;
+      return UnitConfig.IsChanged && UnitConfig.IsValid;
     }
 
     private void OnResetExecute(object obj)
     {
-      Friend.RejectChanges();
+      UnitConfig.RejectChanges();
     }
 
     private bool OnResetCanExecute(object arg)
     {
-      return Friend.IsChanged;
+      return UnitConfig.IsChanged;
     }
 
     private bool OnDeleteCanExecute(object arg)
     {
-      return Friend != null && Friend.Id > 0;
+      return UnitConfig != null && UnitConfig.Id > 0;
     }
 
     private void OnDeleteExecute(object obj)
     {
       var result = _messageDialogService.ShowYesNoDialog(
-          "Delete Friend",
-          string.Format("Do you really want to delete the unit '{0} {1}'", Friend.FirstName, Friend.LastName),
+          "Delete Unit",
+          string.Format("Do you really want to delete the unit '{0} {1}'", UnitConfig.FirstName, UnitConfig.LastName),
           MessageDialogResult.No);
 
       if (result == MessageDialogResult.Yes)
       {
-        _unitConfigDataProvider.DeleteUnitConfig(Friend.Id);
-        _eventAggregator.GetEvent<UnitConfigDeletedEvent>().Publish(Friend.Id);
+        _unitConfigDataProvider.DeleteUnitConfig(UnitConfig.Id);
+        _eventAggregator.GetEvent<UnitConfigDeletedEvent>().Publish(UnitConfig.Id);
       }
     }
 
     private void OnRemoveEmailExecute(object obj)
     {
-      Friend.Emails.Remove(SelectedEmail);
+      UnitConfig.Emails.Remove(SelectedEmail);
       ((DelegateCommand)RemoveEmailCommand).RaiseCanExecuteChanged();
     }
 
@@ -161,7 +161,7 @@ namespace TerraBattle.UI.ViewModel
 
     private void OnAddEmailExecute(object obj)
     {
-      Friend.Emails.Add(new FriendEmailWrapper(new FriendEmail()));
+      UnitConfig.Emails.Add(new FriendEmailWrapper(new FriendEmail()));
     }
 
     private void InvalidateCommands()

@@ -26,7 +26,7 @@
 
     <!--Buttons-->
     <StackPanel Background="#333333" Grid.Row="1" Orientation="Horizontal">
-      <Button Command="{Binding AddFriendCommand}" 
+      <Button Command="{Binding AddUnitConfigCommand}" 
             ToolTip="Add friend" Style="{StaticResource AddButtonStyle}" />
     </StackPanel>
 
@@ -36,8 +36,8 @@
     <GridSplitter Grid.Row="1" Grid.RowSpan="2" Grid.Column="1" Width="5" Background="DarkRed" HorizontalAlignment="Center"/>
 
     <!--Tabs-->
-    <TabControl ItemsSource="{Binding FriendEditViewModels}"
-                SelectedItem="{Binding SelectedFriendEditViewModel, Mode=TwoWay}" 
+    <TabControl ItemsSource="{Binding UnitConfigEditViewModels}"
+                SelectedItem="{Binding SelectedUnitConfigEditViewModel, Mode=TwoWay}" 
                 Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" Background="Black">
       <TabControl.ItemContainerStyle>
         <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
@@ -46,11 +46,11 @@
               <Setter Property="FontWeight" Value="Bold"/>
             </Trigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},
-              Path=Content.Friend.IsChanged}" Value="True">
+              Path=Content.UnitConfig.IsChanged}" Value="True">
               <Setter Property="Background" Value="{StaticResource IsChangedBackgroundBrush}"/>
             </DataTrigger>
             <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self},
-              Path=Content.Friend.IsValid}" Value="False">
+              Path=Content.UnitConfig.IsValid}" Value="False">
               <Setter Property="Background" Value="{StaticResource HasErrorBackgroundBrush}"/>
             </DataTrigger>
           </Style.Triggers>
@@ -59,12 +59,12 @@
       <TabControl.ItemTemplate>
         <DataTemplate>
           <StackPanel Orientation="Horizontal">
-            <TextBlock Text="{Binding Friend.FirstName,ValidatesOnNotifyDataErrors=False}"/>
-            <TextBlock Text="{Binding Friend.LastName}" Margin="5 0 20 0"/>
+            <TextBlock Text="{Binding UnitConfig.FirstName,ValidatesOnNotifyDataErrors=False}"/>
+            <TextBlock Text="{Binding UnitConfig.LastName}" Margin="5 0 20 0"/>
             <Button Content="X" Command="{Binding RelativeSource=
                                   {RelativeSource FindAncestor,
                                   AncestorType={x:Type TabControl}},
-                                  Path=DataContext.CloseFriendTabCommand}"
+                                  Path=DataContext.CloseUnitConfigTabCommand}"
                                 CommandParameter="{Binding}"
                                 Width="20" Height="20" FontWeight="Bold" FontSize="12"
                                 Foreground="White" Padding="0">

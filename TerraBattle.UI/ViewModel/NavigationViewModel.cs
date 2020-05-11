@@ -23,8 +23,8 @@ namespace TerraBattle.UI.ViewModel
       ILookupProvider<UnitConfig> unitConfigLookupProvider)
     {
       _eventAggregator = eventAggregator;
-      _eventAggregator.GetEvent<UnitConfigSavedEvent>().Subscribe(OnFriendSaved);
-      _eventAggregator.GetEvent<UnitConfigDeletedEvent>().Subscribe(OnFriendDeleted);
+      _eventAggregator.GetEvent<UnitConfigSavedEvent>().Subscribe(OnUnitConfigSaved);
+      _eventAggregator.GetEvent<UnitConfigDeletedEvent>().Subscribe(OnUnitConfigDeleted);
       _unitConfigLookupProvider = unitConfigLookupProvider;
       NavigationItems = new ObservableCollection<NavigationItemViewModel>();
     }
@@ -44,23 +44,23 @@ namespace TerraBattle.UI.ViewModel
 
     public ObservableCollection<NavigationItemViewModel> NavigationItems { get; set; }
 
-    private void OnFriendDeleted(int unitConfigId)
+    private void OnUnitConfigDeleted(int unitConfigId)
     {
       var navigationItem =
-        NavigationItems.SingleOrDefault(item => item.FriendId == unitConfigId);
+        NavigationItems.SingleOrDefault(item => item.UnitConfigId == unitConfigId);
       if (navigationItem != null)
       {
         NavigationItems.Remove(navigationItem);
       }
     }
 
-    private void OnFriendSaved(UnitConfig savedFriend)
+    private void OnUnitConfigSaved(UnitConfig savedUnitConfig)
     {
       var navigationItem =
-        NavigationItems.SingleOrDefault(item => item.FriendId == savedFriend.Id);
+        NavigationItems.SingleOrDefault(item => item.UnitConfigId == savedUnitConfig.Id);
       if (navigationItem != null)
       {
-        navigationItem.DisplayValue = string.Format("{0} {1}", savedFriend.FirstName, savedFriend.LastName);
+        navigationItem.DisplayValue = string.Format("{0} {1}", savedUnitConfig.FirstName, savedUnitConfig.LastName);
       }
       else
       {
@@ -78,15 +78,15 @@ namespace TerraBattle.UI.ViewModel
       string displayValue,
       IEventAggregator eventAggregator)
     {
-      FriendId = unitConfigId;
+      UnitConfigId = unitConfigId;
       DisplayValue = displayValue;
       _eventAggregator = eventAggregator; ;
-      OpenFriendEditViewCommand = new DelegateCommand(OpenFriendEditViewExecute);
+      OpenUnitConfigEditViewCommand = new DelegateCommand(OpenUnitConfigEditViewExecute);
     }
 
-    public ICommand OpenFriendEditViewCommand { get; set; }
+    public ICommand OpenUnitConfigEditViewCommand { get; set; }
 
-    public int FriendId { get; private set; }
+    public int UnitConfigId { get; private set; }
 
     public string DisplayValue
     {
@@ -98,9 +98,9 @@ namespace TerraBattle.UI.ViewModel
       }
     }
 
-    private void OpenFriendEditViewExecute(object obj)
+    private void OpenUnitConfigEditViewExecute(object obj)
     {
-      _eventAggregator.GetEvent<OpenUnitConfigEditViewEvent>().Publish(FriendId);
+      _eventAggregator.GetEvent<OpenUnitConfigEditViewEvent>().Publish(UnitConfigId);
     }
   }
 }
