@@ -99,6 +99,9 @@
     <Compile Include="View\Controls\ChangeTrackingCollectionInfo.xaml.cs">
       <DependentUpon>ChangeTrackingCollectionInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\LandingPage.xaml.cs">
+      <DependentUpon>LandingPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\UnitConfigEditPage.xaml.cs">
       <DependentUpon>UnitConfigEditPage.xaml</DependentUpon>
     </Compile>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Controls\ChangeTrackingCollectionInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\LandingPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

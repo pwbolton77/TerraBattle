@@ -1,0 +1,41 @@
+﻿<Page x:Class="TerraBattle.UI.View.LandingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TerraBattle.UI.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="850" d:DesignWidth="920"
+      Background="Black" 
+      Title="LandingPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <TextBlock Margin="10" Foreground="White" FontSize="40" Grid.ColumnSpan="3">
+                <Bold Foreground="Red">Terra</Bold>Battle
+        </TextBlock>
+
+        <!--Buttons-->
+        <StackPanel Grid.Row="1" Orientation="Vertical">
+            <!--<Button Command="{Binding AddUnitConfigCommand}" ToolTip="Add friend" Style="{StaticResource AddButtonStyle}" />-->
+            <Button Content="Unit Configuration" Width="Auto" Style="{StaticResource MainMenuButtonStyle}"   Click="UnitConfigurationMenuButton"></Button>
+            <Button Content="New Game"></Button>
+        </StackPanel>
+
+
+          <!--Footer-->
+        <TextBlock HorizontalAlignment="Right" Text="Version 0.1" Margin="10" FontSize="10" Grid.Row="3" Grid.ColumnSpan="3" Foreground="LightGray" />
+    </Grid>
+</Page>

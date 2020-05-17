@@ -35,9 +35,47 @@
         </ControlTemplate>
       </Setter.Value>
     </Setter>
-  </Style>
 
-  <Style x:Key="AddButtonStyle" TargetType="Button">
+  </Style>
+    <Style x:Key="MainMenuButtonStyle"  TargetType="Button">
+        <Setter Property="BorderBrush" Value="#666666"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Background" Value="{StaticResource DefaultBackgroundBrush}"/>
+        <Setter Property="Foreground" Value="{StaticResource DefaultForegroundBrush}"/>
+        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Width" Value="100"/>
+        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}">
+                        <ContentPresenter 
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ButtonMouseOverBackgroundBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource ButtonMouseOverBorderBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ButtonIsPressedBackgroundBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource ButtonIsPressedBorderBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="BorderBrush" Value="{StaticResource DisabledBorderBrush}"/>
+                            <Setter Property="Foreground" Value="{StaticResource DisabledForegroundBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="AddButtonStyle" TargetType="Button">
     <Setter Property="Width" Value="20"/>
     <Setter Property="Height" Value="20"/>
     <Setter Property="Margin" Value="5"/>
