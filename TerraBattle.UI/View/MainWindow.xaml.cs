@@ -12,14 +12,12 @@ namespace TerraBattle.UI.View
         UnitConfigEditPage _unitConfigEditPage;
         LandingPage _landingPage;
 
-        public MainWindow(MainViewModel viewModel)
+        public MainWindow()
         {
             InitializeComponent();
-            _viewModel = viewModel;
-            DataContext = _viewModel;   // @@ Dont think this is needed.
 
-            _unitConfigEditPage = new UnitConfigEditPage(_viewModel);   // @@ New could be done with AutoFac (?)
-            _landingPage = new LandingPage(_unitConfigEditPage);                           // @@ New could be done with AutoFac (?)
+            _unitConfigEditPage = new UnitConfigEditPage();
+            _landingPage = new LandingPage(_unitConfigEditPage);
 
             Loaded += MainWindowLoaded;
         }
@@ -32,7 +30,7 @@ namespace TerraBattle.UI.View
         protected override void OnClosing(CancelEventArgs e)
         {
             base.OnClosing(e);
-            _viewModel.OnClosing(e);
+            // _viewModel.OnClosing(e);
         }
     }
 }

@@ -13,6 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TerraBattle.UI.ViewModel;
+using Autofac;
+using Microsoft.Practices.Prism.PubSubEvents;
+using TerraBattle.DataAccess;
+using TerraBattle.Model;
+using TerraBattle.UI.DataProvider;
+using TerraBattle.UI.DataProvider.Lookups;
+using TerraBattle.UI.View.Services;
+using TerraBattle.UI.Startup;
 
 namespace TerraBattle.UI.View
 {
@@ -23,10 +31,15 @@ namespace TerraBattle.UI.View
     {
         private MainViewModel _viewModel;
 
-        public UnitConfigEditPage(MainViewModel viewModel)
+        public UnitConfigEditPage()
         {
             InitializeComponent();
-            _viewModel = viewModel;
+
+            var bootstrapper = new Bootstrapper();
+            IContainer container = bootstrapper.Bootstrap();
+
+            _viewModel = container.Resolve<MainViewModel>();
+            _viewModel.Load();
             DataContext = _viewModel;
         }
     }

@@ -102,7 +102,7 @@
     <Compile Include="View\LandingPage.xaml.cs">
       <DependentUpon>LandingPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UnitConfigEditPage.xaml.cs">
+    <Compile Include="UnitConfigUi\UnitConfigEditPage.xaml.cs">
       <DependentUpon>UnitConfigEditPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UnitConfigEditView.xaml.cs">
@@ -189,7 +189,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UnitConfigEditPage.xaml">
+    <Page Include="UnitConfigUi\UnitConfigEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -273,6 +273,7 @@
       <Name>TerraBattle.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
