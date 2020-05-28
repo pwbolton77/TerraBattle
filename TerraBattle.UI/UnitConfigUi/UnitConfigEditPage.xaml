@@ -84,7 +84,7 @@
         </TabControl>
 
         <!--Footer-->
-        <Button Grid.Row="3" Content="Main Menu" Margin="62,0" Click="ReturnToMainMenuButton"></Button>
+        <Button Grid.Row="3" Content="Main Menu" Margin="62,0" Command="{Binding ReturnToMainMenuCommand}" ToolTip="Return to main menu"></Button>
         <TextBlock HorizontalAlignment="Right" Text="Version 0.1" Margin="10" FontSize="10" Grid.Row="3" Grid.ColumnSpan="3" Foreground="LightGray" />
     </Grid>
 </Page>

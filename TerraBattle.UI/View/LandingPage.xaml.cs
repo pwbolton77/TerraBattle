@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TerraBattle.UI.ViewModel;
+using TerraBattle.UI.View.Services;
 
 namespace TerraBattle.UI.View
 {
@@ -20,17 +22,17 @@ namespace TerraBattle.UI.View
     /// </summary>
     public partial class LandingPage : Page
     {
-        private MainWindow _mainWindow;   // @@
-        public LandingPage(MainWindow mainWindow)
+        private IPageManageMainWindow _mainWindowPageManager;
+
+        public LandingPage(IPageManageMainWindow mainWindowPageManager)
         {
             InitializeComponent();
-
-            _mainWindow = mainWindow;
+            _mainWindowPageManager = mainWindowPageManager;
         }
 
         private void UnitConfigurationMenuButton(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(_mainWindow.UnitConfigEditPage);
+            _mainWindowPageManager.RequestUnitConfigEditPage();
         }
     }
 }

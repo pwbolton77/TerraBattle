@@ -16,8 +16,8 @@ namespace TerraBattle.UI.ViewModel
 
         private readonly IEventAggregator _eventAggregator;
         private IUnitConfigEditViewModel _selectedUnitConfigEditViewModel;
-
         private Func<IUnitConfigEditViewModel> _unitConfigEditViewModelCreator;
+        private IPageManageMainWindow _mainWindowPageManager;
 
         public MainViewModel(IEventAggregator eventAggregator,
             IMessageDialogService messageDialogService,
@@ -34,7 +34,14 @@ namespace TerraBattle.UI.ViewModel
             UnitConfigEditViewModels = new ObservableCollection<IUnitConfigEditViewModel>();
             CloseUnitConfigTabCommand = new DelegateCommand(OnCloseUnitConfigTabExecute);
             AddUnitConfigCommand = new DelegateCommand(OnAddUnitConfigExecute);
+            ReturnToMainMenuCommand = new DelegateCommand(OnReturnToMainMenuExecute);
         }
+
+        public void Initialize(IPageManageMainWindow mainWindowPageManager)
+        {
+            _mainWindowPageManager = mainWindowPageManager;
+        }
+
 
         public void Load()
         {
@@ -68,6 +75,7 @@ namespace TerraBattle.UI.ViewModel
         public ICommand CloseUnitConfigTabCommand { get; private set; }
 
         public ICommand AddUnitConfigCommand { get; set; }
+        public ICommand ReturnToMainMenuCommand { get; set; }
 
         public INavigationViewModel NavigationViewModel { get; private set; }
 
@@ -85,6 +93,25 @@ namespace TerraBattle.UI.ViewModel
         }
 
         public bool IsChanged => UnitConfigEditViewModels.Any(u => u.UnitConfig.IsChanged);
+
+
+        private void OnReturnToMainMenuExecute(object obj)
+        {
+            bool cancel = false;
+            if (IsUnsavedChanges())
+            {
+                var result = messageDialogService.ShowYesNoDialog("Close page?",
+                  "You have unsaved changes.  Close anyway?",
+                  MessageDialogResult.No);
+                cancel = result == MessageDialogResult.No;
+            }
+
+            if (!cancel)
+            {
+                // Return to landingPage
+                _mainWindowPageManager.RequestLandingPage();
+            }
+        }
 
         private void OnAddUnitConfigExecute(object obj)
         {

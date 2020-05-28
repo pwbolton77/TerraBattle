@@ -105,6 +105,8 @@
     <Compile Include="UnitConfigUi\UnitConfigEditPage.xaml.cs">
       <DependentUpon>UnitConfigEditPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Services\IPageManageMainWindow.cs" />
+    <Compile Include="View\Services\MainWindowPageManager.cs" />
     <Compile Include="View\UnitConfigEditView.xaml.cs">
       <DependentUpon>UnitConfigEditView.xaml</DependentUpon>
     </Compile>

@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using TerraBattle.UI.View.Services;
 using TerraBattle.UI.ViewModel;
 
 namespace TerraBattle.UI.View
@@ -9,23 +10,19 @@ namespace TerraBattle.UI.View
     public partial class MainWindow : Window
     {
 
-        public UnitConfigEditPage UnitConfigEditPage { get; set; }
-
-        public LandingPage LandingPage { get; set; }
+        private MainWindowPageManager _mainWindowPageManager;
 
         public MainWindow()
         {
             InitializeComponent();
-
-            UnitConfigEditPage = new UnitConfigEditPage(this);
-            LandingPage = new LandingPage(this);
+            _mainWindowPageManager = new MainWindowPageManager(MainWindowFrame.NavigationService);
 
             Loaded += MainWindowLoaded;
         }
 
         private void MainWindowLoaded(object sender, RoutedEventArgs e)
         {
-            MainWindowFrame.NavigationService.Navigate(LandingPage);
+            _mainWindowPageManager.RequestLandingPage();
         }
 
         protected override void OnClosing(CancelEventArgs e)
