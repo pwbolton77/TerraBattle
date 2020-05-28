@@ -20,16 +20,17 @@ namespace TerraBattle.UI.View
     /// </summary>
     public partial class LandingPage : Page
     {
-        UnitConfigEditPage _unitConfigEditPage;
-        public LandingPage(UnitConfigEditPage unitConfigEditPage)
+        private MainWindow _mainWindow;   // @@
+        public LandingPage(MainWindow mainWindow)
         {
-            _unitConfigEditPage = unitConfigEditPage;
             InitializeComponent();
+
+            _mainWindow = mainWindow;
         }
 
         private void UnitConfigurationMenuButton(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(_unitConfigEditPage);
+            this.NavigationService.Navigate(_mainWindow.UnitConfigEditPage);
         }
     }
 }

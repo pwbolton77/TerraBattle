@@ -31,16 +31,37 @@ namespace TerraBattle.UI.View
     {
         private MainViewModel _viewModel;
 
-        public UnitConfigEditPage()
+        private MainWindow _mainWindow;   // @@
+        private IContainer _container;
+
+        public UnitConfigEditPage(MainWindow mainWindow)
         {
             InitializeComponent();
-
+            _mainWindow = mainWindow;
             var bootstrapper = new Bootstrapper();
-            IContainer container = bootstrapper.Bootstrap();
+            _container = bootstrapper.Bootstrap();
 
-            _viewModel = container.Resolve<MainViewModel>();
+            _viewModel = _container.Resolve<MainViewModel>();
             _viewModel.Load();
             DataContext = _viewModel;
+        }
+
+        private void ReturnToMainMenuButton(object sender, RoutedEventArgs e)
+        {
+            bool cancel = false;
+            if (_viewModel.IsUnsavedChanges())
+            {
+                var result = _viewModel.messageDialogService.ShowYesNoDialog("Close page?",
+                  "You have unsaved changes.  Close anyway?",
+                  MessageDialogResult.No);
+                cancel = result == MessageDialogResult.No;
+            }
+
+            if (!cancel)
+            {
+                // Return to landingPage
+                this.NavigationService.Navigate(_mainWindow.LandingPage);
+            }
         }
     }
 }

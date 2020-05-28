@@ -8,23 +8,24 @@ namespace TerraBattle.UI.View
 {
     public partial class MainWindow : Window
     {
-        private MainViewModel _viewModel;
-        UnitConfigEditPage _unitConfigEditPage;
-        LandingPage _landingPage;
+
+        public UnitConfigEditPage UnitConfigEditPage { get; set; }
+
+        public LandingPage LandingPage { get; set; }
 
         public MainWindow()
         {
             InitializeComponent();
 
-            _unitConfigEditPage = new UnitConfigEditPage();
-            _landingPage = new LandingPage(_unitConfigEditPage);
+            UnitConfigEditPage = new UnitConfigEditPage(this);
+            LandingPage = new LandingPage(this);
 
             Loaded += MainWindowLoaded;
         }
 
         private void MainWindowLoaded(object sender, RoutedEventArgs e)
         {
-            MainWindowFrame.NavigationService.Navigate(_landingPage);
+            MainWindowFrame.NavigationService.Navigate(LandingPage);
         }
 
         protected override void OnClosing(CancelEventArgs e)

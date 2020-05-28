@@ -12,8 +12,9 @@ namespace TerraBattle.UI.ViewModel
 {
     public class MainViewModel : Observable
     {
+        public readonly IMessageDialogService messageDialogService;
+
         private readonly IEventAggregator _eventAggregator;
-        private readonly IMessageDialogService _messageDialogService;
         private IUnitConfigEditViewModel _selectedUnitConfigEditViewModel;
 
         private Func<IUnitConfigEditViewModel> _unitConfigEditViewModelCreator;
@@ -24,7 +25,7 @@ namespace TerraBattle.UI.ViewModel
             Func<IUnitConfigEditViewModel> unitConfigViewModelCreator)
         {
             _eventAggregator = eventAggregator;
-            _messageDialogService = messageDialogService;
+            this.messageDialogService = messageDialogService;
             _eventAggregator.GetEvent<OpenUnitConfigEditViewEvent>().Subscribe(OnOpenUnitConfigTab);
             _eventAggregator.GetEvent<UnitConfigDeletedEvent>().Subscribe(OnUnitConfigDeleted);
 
@@ -40,29 +41,27 @@ namespace TerraBattle.UI.ViewModel
             NavigationViewModel.Load();
         }
 
+        // @@ Method is not used, so clean up
         public void OnClosing(CancelEventArgs e)
         {
             if (UnitConfigEditViewModels.Any(u => u.UnitConfig.IsChanged))
             {
-                var result = _messageDialogService.ShowYesNoDialog("Close application?",
+                var result = messageDialogService.ShowYesNoDialog("Close application?",
                   "You'll lose your changes if you close this application. Close it?",
                   MessageDialogResult.No);
                 e.Cancel = result == MessageDialogResult.No;
             }
         }
 
-
-        public bool OnClosing() // @@ Integrate into closing/leaving the page 
+        public bool IsUnsavedChanges()
         {
-            bool cancelClose = false;
+            bool isUnsavedChanges = false;
             if (UnitConfigEditViewModels.Any(u => u.UnitConfig.IsChanged))
             {
-                var result = _messageDialogService.ShowYesNoDialog("Close application?",
-                  "You'll lose your changes if you close this application. Close it?",
-                  MessageDialogResult.No);
-                cancelClose = result == MessageDialogResult.No;
+                isUnsavedChanges = true;
             }
-            return cancelClose;
+
+            return isUnsavedChanges;
         }
 
 
@@ -115,7 +114,7 @@ namespace TerraBattle.UI.ViewModel
             {
                 if (unitConfigEditVmToClose.UnitConfig.IsChanged)
                 {
-                    var result = _messageDialogService.ShowYesNoDialog("Close tab?",
+                    var result = messageDialogService.ShowYesNoDialog("Close tab?",
                       "You'll lose your changes if you close this tab. Close it?",
                       MessageDialogResult.No);
                     if (result == MessageDialogResult.No)
