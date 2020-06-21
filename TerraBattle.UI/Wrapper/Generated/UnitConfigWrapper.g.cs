@@ -92,6 +92,8 @@ namespace TerraBattle.UI.Wrapper
  
     public AddressWrapper Address { get; private set; }
  
+    public ChangeTrackingCollection<EquipConfigWrapper> EquipConfigs { get; private set; }
+ 
     public ChangeTrackingCollection<FriendEmailWrapper> Emails { get; private set; }
     
     protected override void InitializeComplexProperties(UnitConfig model)
@@ -106,6 +108,14 @@ namespace TerraBattle.UI.Wrapper
 
     protected override void InitializeCollectionProperties(UnitConfig model)
     {
+      if (model.EquipConfigs == null)
+      {
+        throw new ArgumentException("EquipConfigs cannot be null");
+      }
+ 
+      EquipConfigs = new ChangeTrackingCollection<EquipConfigWrapper>(
+        model.EquipConfigs.Select(e => new EquipConfigWrapper(e)));
+      RegisterCollection(EquipConfigs, model.EquipConfigs);
       if (model.Emails == null)
       {
         throw new ArgumentException("Emails cannot be null");

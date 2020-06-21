@@ -127,6 +127,7 @@
     <Compile Include="Wrapper\Custom\FriendEmailWrapper.cs" />
     <Compile Include="Wrapper\Custom\UnitConfigWrapper.cs" />
     <Compile Include="Wrapper\Generated\AddressWrapper.g.cs" />
+    <Compile Include="Wrapper\Generated\EquipConfigWrapper.g.cs" />
     <Compile Include="Wrapper\Generated\FriendEmailWrapper.g.cs" />
     <Compile Include="Wrapper\Generated\FriendGroupWrapper.g.cs" />
     <Compile Include="Wrapper\Generated\GenerateModelWrappers.cs">

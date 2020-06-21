@@ -11,6 +11,8 @@ namespace TerraBattle.Model
 
     public int OffenseRating { get; set; }
 
+    public List<EquipConfig> EquipConfigs { get; set; }
+
     // @@ PWB: Obslete fields
     public int FriendGroupId { get; set; }
 

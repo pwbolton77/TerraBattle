@@ -50,7 +50,7 @@ namespace TerraBattle.UI.ViewModel
 
       var unitConfig = unitConfigId.HasValue
           ? _unitConfigDataProvider.GetUnitConfigById(unitConfigId.Value)
-          : new UnitConfig { Address = new Address(), Emails = new List<FriendEmail>() };
+          : new UnitConfig { Address = new Address(), Emails = new List<FriendEmail>(), EquipConfigs = new List<EquipConfig>() };
 
       UnitConfig = new UnitConfigWrapper(unitConfig);
       UnitConfig.PropertyChanged += (s, e) =>
