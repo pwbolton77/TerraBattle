@@ -80,22 +80,23 @@
         <Label Content="Streetnumber" Grid.Row="4" Grid.Column="3" Margin="5"/>
         <TextBox Text="{Binding UnitConfig.Address.StreetNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="4"/>
 
-        <!--@@-->
+        <!--EquipConfig -->
+        <!--TODO: @@ Add validation of config name and damage-->
         <StackPanel Grid.Row="7">
-            <Label Content="Equip" Margin="5" VerticalAlignment="Top"/>
-            <Button Command="{Binding AddEmailCommand}" Style="{StaticResource AddButtonStyle}" HorizontalAlignment="Right"/>
-            <Button Command="{Binding RemoveEmailCommand}" Style="{StaticResource RemoveButtonStyle}" HorizontalAlignment="Right"/>
+            <Label Content="Equip Config" Margin="5" VerticalAlignment="Top"/>
+            <Button Command="{Binding AddEquipConfigCommand}" Style="{StaticResource AddButtonStyle}" HorizontalAlignment="Right"/>
+            <Button Command="{Binding RemoveEquipConfigCommand}" Style="{StaticResource RemoveButtonStyle}" HorizontalAlignment="Right"/>
         </StackPanel>
-        <!--@@ Add DataGrid for Equiment -->
-        <!--<DataGrid ItemsSource="{Binding UnitConfig.EquipConfigs}" SelectedItem="{Binding SelectedEquipConfig,Mode=TwoWay}" Grid.Row="8" 
+
+        <DataGrid ItemsSource="{Binding UnitConfig.EquipConfigs}" SelectedItem="{Binding SelectedEquipConfig,Mode=TwoWay}" Grid.Row="7" 
             behaviors:DataGridChangeBehavior.IsActive="True"  Grid.Column="1" Grid.ColumnSpan="4" Margin="0 5 0 0" Width="538">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Config Name" Binding="{Binding EquipConfigName,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="300"/>
                 <DataGridTextColumn Header="Damage" Binding="{Binding Damage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="*"/>
             </DataGrid.Columns>
-        </DataGrid>-->
-        <!--@@-->
+        </DataGrid>
 
+        <!--Email-->
         <StackPanel Grid.Row="8">
             <Label Content="Emails" Margin="5" VerticalAlignment="Top"/>
             <Button Command="{Binding AddEmailCommand}" Style="{StaticResource AddButtonStyle}" HorizontalAlignment="Right"/>

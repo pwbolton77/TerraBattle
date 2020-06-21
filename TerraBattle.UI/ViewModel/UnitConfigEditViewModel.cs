@@ -25,6 +25,7 @@ namespace TerraBattle.UI.ViewModel
     private UnitConfigWrapper _unitConfigs;
     private IEnumerable<LookupItem> _friendGroups;
     private FriendEmailWrapper _selectedEmail;
+    private EquipConfigWrapper _selectedEquipConfig;
 
     public UnitConfigEditViewModel(IEventAggregator eventAggregator,
         IMessageDialogService messageDialogService,
@@ -42,6 +43,9 @@ namespace TerraBattle.UI.ViewModel
 
       AddEmailCommand = new DelegateCommand(OnAddEmailExecute);
       RemoveEmailCommand = new DelegateCommand(OnRemoveEmailExecute, OnRemoveEmailCanExecute);
+
+      AddEquipConfigCommand = new DelegateCommand(OnAddEquipConfigExecute);
+      RemoveEquipConfigCommand = new DelegateCommand(OnRemoveEquipConfigExecute, OnRemoveEquipConfigCanExecute);
     }
 
     public void Load(int? unitConfigId = null)
@@ -96,6 +100,17 @@ namespace TerraBattle.UI.ViewModel
       }
     }
 
+    public EquipConfigWrapper SelectedEquipConfig
+    {
+      get { return _selectedEquipConfig; }
+      set
+      {
+        _selectedEquipConfig = value;
+        OnPropertyChanged();
+        ((DelegateCommand)RemoveEquipConfigCommand).RaiseCanExecuteChanged();
+      }
+    }
+
     public ICommand SaveCommand { get; private set; }
 
     public ICommand ResetCommand { get; private set; }
@@ -105,6 +120,9 @@ namespace TerraBattle.UI.ViewModel
     public ICommand AddEmailCommand { get; private set; }
 
     public ICommand RemoveEmailCommand { get; private set; }
+    public ICommand AddEquipConfigCommand { get; private set; }
+
+    public ICommand RemoveEquipConfigCommand { get; private set; }
 
     private void OnSaveExecute(object obj)
     {
@@ -162,6 +180,22 @@ namespace TerraBattle.UI.ViewModel
     private void OnAddEmailExecute(object obj)
     {
       UnitConfig.Emails.Add(new FriendEmailWrapper(new FriendEmail()));
+    }
+
+    private void OnRemoveEquipConfigExecute(object obj)
+    {
+      UnitConfig.EquipConfigs.Remove(SelectedEquipConfig);
+      ((DelegateCommand)RemoveEquipConfigCommand).RaiseCanExecuteChanged();
+    }
+
+    private bool OnRemoveEquipConfigCanExecute(object arg)
+    {
+      return SelectedEquipConfig != null;
+    }
+
+    private void OnAddEquipConfigExecute(object obj)
+    {
+      UnitConfig.EquipConfigs.Add(new EquipConfigWrapper(new EquipConfig()));
     }
 
     private void InvalidateCommands()
